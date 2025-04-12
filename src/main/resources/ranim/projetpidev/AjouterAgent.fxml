@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane xmlns:fx="http://javafx.com/fxml"
+            xmlns="http://javafx.com/javafx"
+            fx:controller="ranim.projetpidev.controllers.AjouterUserController"
+            prefHeight="400.0" prefWidth="600.0">
+
+    <VBox alignment="CENTER" spacing="10" layoutX="50" layoutY="30">
+
+        <Label text="Inscription Agent"/>
+
+        <TextField fx:id="firstName" promptText="Prénom"/>
+        <TextField fx:id="lastName" promptText="Nom"/>
+        <TextField fx:id="email" promptText="Email"/>
+        <TextField fx:id="entryDate" promptText="Date d'entrée (ex: 2025-04-11)"/>
+        <TextField fx:id="password" promptText="Mot de passe"/>
+        <TextField fx:id="companyName" promptText="Nom de l'entreprise"/>
+        <TextField fx:id="location" promptText="Localisation"/>
+
+        <Button text="Ajouter Agent" onAction="#addAgent"/>
+    </VBox>
+</AnchorPane>
