@@ -12,7 +12,7 @@ public class MainFX extends Application {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/ranim/projetpidev/Accueil.fxml"));
         Parent root = loader.load();
         Scene scene = new Scene(root);
-        stage.setTitle("Inscription");
+        stage.setTitle("Liste");
         stage.setScene(scene);
         stage.show();
     }

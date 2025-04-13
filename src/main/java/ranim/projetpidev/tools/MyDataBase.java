@@ -26,6 +26,13 @@ public class MyDataBase {
     }
 
     public Connection getCnx() {
+        try {
+            if (cnx == null || cnx.isClosed()) {
+                cnx = DriverManager.getConnection(URL, USER, PWD);
+                System.out.println("🔄 Connexion renouvelée");
+            }
+        } catch (SQLException e) {
+            System.err.println("Erreur de reconnexion : " + e.getMessage());
+        }
         return cnx;
-    }
-}
+    }}

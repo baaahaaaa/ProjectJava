@@ -1,23 +1,38 @@
 <?xml version="1.0" encoding="UTF-8"?>
-
+<?import javafx.scene.image.*?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<AnchorPane xmlns:fx="http://javafx.com/fxml"
-            xmlns="http://javafx.com/javafx"
+<AnchorPane xmlns="http://javafx.com/javafx"
+            xmlns:fx="http://javafx.com/fxml"
             fx:controller="ranim.projetpidev.controllers.AjouterUserController"
-            prefHeight="400.0" prefWidth="600.0">
+            prefHeight="500.0" prefWidth="800.0"
+            stylesheets="@css/Student.css">
 
-    <VBox alignment="CENTER" spacing="10" layoutX="50" layoutY="30">
+    <HBox spacing="30" alignment="CENTER" AnchorPane.topAnchor="20" AnchorPane.leftAnchor="20" AnchorPane.rightAnchor="20">
 
-        <Label text="Inscription Étudiant"/>
+        <!-- 📸 Partie gauche : Image Étudiant -->
+        <VBox alignment="CENTER">
+            <ImageView fitWidth="300" fitHeight="600" preserveRatio="true">
+                <image>
+                    <Image url="@images/student_banner.jpg"/>
+                </image>
+            </ImageView>
+        </VBox>
 
-        <TextField fx:id="firstName" promptText="Prénom"/>
-        <TextField fx:id="lastName" promptText="Nom"/>
-        <TextField fx:id="email" promptText="Email"/>
-        <TextField fx:id="entryDate" promptText="Date d'entrée (ex: 2025-04-11)"/>
-        <TextField fx:id="password" promptText="Mot de passe"/>
+        <!-- 📝 Partie droite : Formulaire -->
+        <VBox spacing="10" alignment="CENTER_LEFT" prefWidth="400">
 
-        <Button text="Ajouter Étudiant" onAction="#addStudent"/>
-    </VBox>
+            <Label text="Bienvenue sur notre plateforme !" styleClass="welcome-label"/>
+            <Label text="Inscription Étudiant" styleClass="title-label"/>
+
+            <TextField fx:id="firstName" promptText="Prénom"/>
+            <TextField fx:id="lastName" promptText="Nom"/>
+            <TextField fx:id="email" promptText="Email"/>
+            <DatePicker fx:id="entryDate" promptText="Date d'entrée (ex: 2025-04-11)"/>
+            <PasswordField fx:id="passwordField" promptText="Mot de passe"/>
+
+            <Button text="Ajouter Étudiant" onAction="#addStudent" styleClass="submit-button"/>
+        </VBox>
+    </HBox>
 </AnchorPane>

@@ -2,6 +2,8 @@ package ranim.projetpidev.controllers;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.scene.control.DatePicker;
+import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import ranim.projetpidev.entites.Agent;
 import ranim.projetpidev.entites.Student;
@@ -9,7 +11,9 @@ import ranim.projetpidev.entites.Tutor;
 import ranim.projetpidev.entites.User;
 import ranim.projetpidev.services.UserService;
 
+import java.sql.SQLException;
 import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 
 public class AjouterUserController {
 
@@ -23,17 +27,15 @@ public class AjouterUserController {
     private TextField email;
 
     @FXML
-    private TextField entryDate;
+    private DatePicker entryDate;
 
     @FXML
-    private TextField password;
-
-    // Champs spécifiques Agent
+    private PasswordField passwordField;
     @FXML
     private TextField companyName;
 
     @FXML
-    private TextField location;
+    private TextField locationField;
 
     // Champ spécifique Tutor
     @FXML
@@ -43,41 +45,58 @@ public class AjouterUserController {
 
     // 👔 Agent
     @FXML
-    void addAgent(ActionEvent event) {
+    void addAgent(ActionEvent event) throws SQLException {
         Agent user = new Agent();
         user.setFirstName(firstName.getText());
         user.setLastName(lastName.getText());
         user.setEmail(email.getText());
-        user.setEntryDate(LocalDate.parse(entryDate.getText()));
-        user.setPassword(password.getText());
-
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+        LocalDate date = entryDate.getValue();
+        if (date == null) {
+            System.err.println("❌ Veuillez choisir une date !");
+            return;
+        }
+        user.setEntryDate(date);
+        user.setPassword(passwordField.getText());
         user.setType("agent");
         user.setCompanyName(companyName.getText());
-        user.setLocation(location.getText());
+        user.setLocation(locationField.getText());
 
         userService.add(user);
         System.out.println("Agent ajouté avec succès !");
     }
     @FXML
-    void addStudent(ActionEvent event) {
+    void addStudent(ActionEvent event) throws SQLException {
         Student user = new Student();
         user.setFirstName(firstName.getText());
         user.setLastName(lastName.getText());
         user.setEmail(email.getText());
-        user.setEntryDate(LocalDate.parse(entryDate.getText()));
-        user.setPassword(password.getText());
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+        LocalDate date = entryDate.getValue();
+        if (date == null) {
+            System.err.println("❌ Veuillez choisir une date !");
+            return;
+        }
+        user.setEntryDate(date);
+        user.setPassword(passwordField.getText());
         user.setType("student");
         userService.add(user);
         System.out.println("Stduent added succssfully");
     }
     @FXML
-    void addTutor(ActionEvent event) {
+    void addTutor(ActionEvent event) throws SQLException {
         Tutor user = new Tutor();
         user.setFirstName(firstName.getText());
         user.setLastName(lastName.getText());
         user.setEmail(email.getText());
-        user.setEntryDate(LocalDate.parse(entryDate.getText()));
-        user.setPassword(password.getText());
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+        LocalDate date = entryDate.getValue();
+        if (date == null) {
+            System.err.println("❌ Veuillez choisir une date !");
+            return;
+        }
+        user.setEntryDate(date);
+        user.setPassword(passwordField.getText());
 
         user.setType("tutor"); // Automatique
         user.setDomain(domain.getText());
