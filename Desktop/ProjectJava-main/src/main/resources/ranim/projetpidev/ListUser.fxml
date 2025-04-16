@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane xmlns="http://javafx.com/javafx"
+            xmlns:fx="http://javafx.com/fxml"
+            fx:controller="ranim.projetpidev.controllers.ListeUserTableController"
+            prefWidth="1000" prefHeight="500">
+
+    <VBox spacing="10" layoutX="20" layoutY="20" prefWidth="960" prefHeight="460"
+          AnchorPane.topAnchor="10" AnchorPane.leftAnchor="10" AnchorPane.rightAnchor="10" AnchorPane.bottomAnchor="10">
+
+        <Label text="📋 Liste détaillée des utilisateurs" style="-fx-font-size: 18px; -fx-font-weight: bold;"/>
+
+        <!-- ✅ Ajout du filtre ici -->
+        <HBox spacing="10" alignment="CENTER_LEFT">
+            <Label text="Filtrer par type :" />
+            <ComboBox fx:id="typeFilter" onAction="#filtrerParType" prefWidth="180"/>
+        </HBox>
+
+        <TableView fx:id="tableView">
+
+            <columns>
+                <TableColumn fx:id="idCol" text="ID" prefWidth="50"/>
+                <TableColumn fx:id="firstNameCol" text="Prénom" prefWidth="100"/>
+                <TableColumn fx:id="lastNameCol" text="Nom" prefWidth="100"/>
+                <TableColumn fx:id="emailCol" text="Email" prefWidth="180"/>
+                <TableColumn fx:id="entryDateCol" text="Date d'entrée" prefWidth="120"/>
+                <TableColumn fx:id="typeCol" text="Type" prefWidth="80"/>
+                <TableColumn fx:id="companyCol" text="Société (Agent)" prefWidth="120"/>
+                <TableColumn fx:id="locationCol" text="Lieu (Agent)" prefWidth="120"/>
+                <TableColumn fx:id="domainCol" text="Domaine (Tutor)" prefWidth="120"/>
+                <TableColumn fx:id="actionCol" text="Actions" prefWidth="160"/>
+
+            </columns>
+
+        </TableView>
+
+        <Button text="Retour à l'accueil" onAction="#retourAccueil"/>
+    </VBox>
+</AnchorPane>

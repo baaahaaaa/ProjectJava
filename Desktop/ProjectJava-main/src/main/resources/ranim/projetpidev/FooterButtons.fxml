@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.HBox?>
+
+<HBox xmlns="http://javafx.com/javafx" xmlns:fx="http://javafx.com/fxml"
+      fx:controller="ranim.projetpidev.controllers.FooterButtonsController"
+      spacing="15" alignment="CENTER" style="-fx-padding: 15;">
+
+    <Button fx:id="btnRetour" text="⬅ Retour" onAction="#handleRetour"/>
+    <Button fx:id="btnQuitter" text="❌ Quitter" onAction="#handleQuitter"/>
+</HBox>
