@@ -13,6 +13,7 @@ module ranim.projetpidev {
     requires java.sql;
     requires java.desktop;
 
+    opens ranim.projetpidev.entites to javafx.base;
     opens ranim.projetpidev to javafx.fxml;
     exports ranim.projetpidev;
 
@@ -21,4 +22,6 @@ module ranim.projetpidev {
 
     exports ranim.projetpidev.tools;
 
+    opens com.esprit.views to javafx.fxml;
+    exports com.esprit.views;
 }
