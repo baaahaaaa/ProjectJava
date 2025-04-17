@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.layout.AnchorPane?>
+
+<AnchorPane xmlns="http://javafx.com/javafx"
+            xmlns:fx="http://javafx.com/fxml"
+            fx:controller="ranim.projetpidev.controllers.EditQuestionController"
+            stylesheets="@styles.css">
+
+
+    <VBox spacing="10" alignment="CENTER" AnchorPane.topAnchor="0" AnchorPane.bottomAnchor="0" AnchorPane.leftAnchor="0" AnchorPane.rightAnchor="0">
+        <padding>
+            <Insets top="20" right="20" bottom="20" left="20"/>
+        </padding>
+
+        <Label text="Modifier la Question" styleClass="form-title"/>
+
+        <TextField fx:id="questionField" promptText="Texte de la question"/>
+        <TextField fx:id="optionAField" promptText="Option A"/>
+        <TextField fx:id="optionBField" promptText="Option B"/>
+        <TextField fx:id="optionCField" promptText="Option C"/>
+        <ComboBox fx:id="correctAnswerComboBox" promptText="Bonne réponse"/>
+
+        <Button text="🖊 Mettre à jour" onAction="#handleUpdate" styleClass="submit-button"/>
+        <fx:include source="FooterButtons.fxml"/>
+    </VBox>
+</AnchorPane>

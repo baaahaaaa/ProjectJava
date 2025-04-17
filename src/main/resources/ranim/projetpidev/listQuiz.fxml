@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<BorderPane xmlns="http://javafx.com/javafx"
+            xmlns:fx="http://javafx.com/fxml"
+            fx:controller="ranim.projetpidev.controllers.ListQuizController"
+            stylesheets="@styles.css"
+            prefWidth="800.0" prefHeight="400.0">
+
+    <!-- Tableau principal au centre -->
+    <center>
+        <TableView fx:id="quizTable" prefWidth="780.0" prefHeight="380.0">
+            <columns>
+                <TableColumn fx:id="colTitle" text="Titre du Quiz" prefWidth="200.0"/>
+                <TableColumn fx:id="colType" text="Type" prefWidth="150.0"/>
+                <TableColumn fx:id="colDetails" text="Détails / Questions" prefWidth="150.0"/>
+                <TableColumn fx:id="colEdit" text="Modifier" prefWidth="130.0"/>
+                <TableColumn fx:id="colDelete" text="Supprimer" prefWidth="130.0"/>
+            </columns>
+        </TableView>
+    </center>
+
+    <!-- Boutons en bas -->
+    <bottom>
+        <fx:include source="FooterButtons.fxml"/>
+    </bottom>
+</BorderPane>

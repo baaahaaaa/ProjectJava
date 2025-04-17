@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.AnchorPane?>
+
+<AnchorPane xmlns="http://javafx.com/javafx"
+            xmlns:fx="http://javafx.com/fxml"
+            fx:controller="ranim.projetpidev.controllers.ListQuestionsController"
+            prefHeight="400.0" prefWidth="600.0"
+            stylesheets="@styles.css">
+
+    <TableView fx:id="questionTable" layoutX="10.0" layoutY="10.0" prefWidth="580.0" prefHeight="380.0">
+        <columns>
+            <TableColumn fx:id="colQuestion" text="Question" prefWidth="200.0"/>
+            <TableColumn fx:id="colAfficher" text="👁" prefWidth="100.0"/>
+            <TableColumn fx:id="colModifier" text="✏" prefWidth="100.0"/>
+            <TableColumn fx:id="colSupprimer" text="🗑️" prefWidth="100.0"/>
+        </columns>
+    </TableView>
+    <fx:include source="FooterButtons.fxml"/>
+</AnchorPane>

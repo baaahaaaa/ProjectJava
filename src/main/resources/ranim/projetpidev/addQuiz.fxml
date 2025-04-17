@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Pos?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.TextArea?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+<AnchorPane xmlns:fx="http://javafx.com/fxml" fx:controller="ranim.projetpidev.controllers.addQuizController"
+            prefHeight="500.0" prefWidth="600.0"
+            stylesheets="@styles.css">
+
+   <!-- Titre principal -->
+   <Text layoutX="180.0" layoutY="40.0" text="Ajouter un Nouveau Quiz" textAlignment="CENTER">
+      <font>
+         <Font name="Corbel" size="24.0" />
+      </font>
+   </Text>
+
+   <!-- Formulaire -->
+   <VBox spacing="20" alignment="CENTER" layoutX="50" layoutY="80" prefWidth="500">
+
+      <!-- Champ Titre -->
+      <HBox spacing="10" alignment="CENTER_LEFT">
+         <Text text="Titre:" style="-fx-font-size: 14px; -fx-font-weight: bold;" />
+         <TextField fx:id="titre" promptText="Entrez le titre du quiz" prefWidth="300" />
+      </HBox>
+
+      <!-- Champ Description -->
+      <HBox spacing="10" alignment="CENTER_LEFT">
+         <Text text="Description:" style="-fx-font-size: 14px; -fx-font-weight: bold;" />
+         <TextArea fx:id="desc" promptText="Entrez la description du quiz" prefHeight="100" prefWidth="300" />
+      </HBox>
+
+      <!-- Champ Type -->
+      <HBox spacing="10" alignment="CENTER_LEFT">
+         <Text text="Type:" style="-fx-font-size: 14px; -fx-font-weight: bold;" />
+         <ComboBox fx:id="type" promptText="Choisir un type" prefWidth="300" />
+      </HBox>
+
+      <!-- Boutons -->
+      <HBox spacing="20" alignment="CENTER">
+         <Button text="Sauvegarder le Quiz 💾"
+                 onAction="#handleAddQuiz"
+                 style="-fx-background-color: #4CAF50; -fx-text-fill: white;" />
+
+         <Button text="Voir la liste des Quiz 👁"
+                 onAction="#handleVoirListeQuiz"
+                 style="-fx-background-color: #2196F3; -fx-text-fill: white;" />
+      </HBox>
+      <fx:include source="FooterButtons.fxml"/>
+   </VBox>
+</AnchorPane>
