@@ -108,4 +108,17 @@ public class ResourceService implements IService<Resource> {
         }
         return resources;
     }
+
+    public List<Resource>getResourcesForCourse(int courseID){
+        List<Resource> resources = new ArrayList<>();
+        String query = "SELECT * FROM resource WHERE courses_id = ?";
+        try {
+            PreparedStatement preparedStatement = connection.prepareStatement(query);
+            preparedStatement.setInt(1, courseID);
+            preparedStatement.executeQuery(query);
+    } catch (SQLException e) {
+        e.printStackTrace();
+    }
+        return resources;
+    }
 } 

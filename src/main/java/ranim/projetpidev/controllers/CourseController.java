@@ -26,6 +26,8 @@ public class CourseController {
     @FXML
     private TableColumn<Course, String> descriptionColumn;
     @FXML
+    private TableColumn<Course, String> resourcesColumn;
+    @FXML
     private TableColumn<Course, String> domainColumn;
     @FXML
     private TableColumn<Course, String> typeColumn;
@@ -63,6 +65,7 @@ public class CourseController {
                 return new TableCell<Course, Void>() {
                     private final Button editButton = new Button("Edit");
                     private final Button deleteButton = new Button("Delete");
+                    private final Button resourceButton = new Button("View Resources");
 
                     {
                         editButton.setOnAction(event -> {
@@ -74,6 +77,12 @@ public class CourseController {
                             Course course = getTableView().getItems().get(getIndex());
                             handleDeleteCourse(course);
                         });
+
+                        resourceButton.setOnAction(event -> {
+                            int courseId = getTableView().getItems().get(getIndex()).getId();
+                            System.out.println(":::::::::::course IDD   "+courseId);
+                            //push to fxml and display course with id : courseId
+                        });
                     }
 
                     @Override
@@ -82,7 +91,7 @@ public class CourseController {
                         if (empty) {
                             setGraphic(null);
                         } else {
-                            setGraphic(new HBox(5, editButton, deleteButton));
+                            setGraphic(new HBox(5, editButton, deleteButton,resourceButton));
                         }
                     }
                 };
