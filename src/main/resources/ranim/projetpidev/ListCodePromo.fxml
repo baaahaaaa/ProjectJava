@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane xmlns:fx="http://javafx.com/javafx"
+            fx:controller="ranim.projetpidev.controllers.ListCodesPromoController"
+            prefWidth="500" prefHeight="300">
+    <VBox spacing="20" layoutX="10" layoutY="10">
+        <TableView fx:id="promoTableView">
+            <columns>
+                <TableColumn fx:id="codeCol" text="Code" prefWidth="150"/>
+                <TableColumn fx:id="discountCol" text="Réduction (%)" prefWidth="150"/>
+                <TableColumn fx:id="expiryCol" text="Expiration" prefWidth="150"/>
+                <TableColumn fx:id="statusCol" text="Statut" prefWidth="100"/>
+                <TableColumn fx:id="actionCol" text="Actions" prefWidth="150"/> <!-- Colonne Action -->
+            </columns>
+        </TableView>
+        <Button fx:id="closeButton" text="Fermer" onAction="#closeWindow" prefWidth="100"/>
+    </VBox>
+</AnchorPane>

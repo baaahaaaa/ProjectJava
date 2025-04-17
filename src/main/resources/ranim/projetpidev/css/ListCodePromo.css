@@ -1,0 +1,56 @@
+/* Définir les styles de la liste */
+.promo-list-view {
+    -fx-background-color: #f1f1f1;
+    -fx-border-color: #ccc;
+    -fx-border-width: 1px;
+    -fx-font-size: 14px;
+    -fx-padding: 10px;
+    -fx-selection-bar: #3498db;
+}
+
+/* Style du titre */
+.title-label {
+    -fx-font-size: 20px;
+    -fx-font-weight: bold;
+    -fx-text-fill: #2c3e50;
+    -fx-padding: 10px;
+    -fx-alignment: center;
+}
+
+/* Style des boutons d'action */
+.action-button {
+    -fx-background-color: #2ecc71; /* Vert */
+    -fx-text-fill: white;
+    -fx-font-size: 14px;
+    -fx-padding: 10px 20px;
+    -fx-border-radius: 5px;
+    -fx-cursor: hand;
+}
+
+.action-button:hover {
+    -fx-background-color: #27ae60; /* Vert foncé au survol */
+}
+
+/* Style des labels de statut */
+.status-label {
+    -fx-font-size: 16px;
+    -fx-text-fill: #e74c3c; /* Rouge pour les erreurs */
+    -fx-padding: 10px;
+    -fx-alignment: center;
+}
+
+/* Style du champ de saisie */
+.text-field {
+    -fx-padding: 10px;
+    -fx-font-size: 14px;
+    -fx-background-color: #ecf0f1;
+    -fx-border-color: #bdc3c7;
+    -fx-border-width: 1px;
+    -fx-border-radius: 5px;
+}
+
+/* Alignement des boutons */
+.hbox {
+    -fx-padding: 10px;
+    -fx-alignment: center;
+}

@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.control.*?>
+
+<StackPane xmlns="http://javafx.com/javafx"
+           xmlns:fx="http://javafx.com/fxml"
+           fx:controller="ranim.projetpidev.controllers.HomeViewController"
+           fx:id="rootPane"> <!-- 🔁 Ajout de fx:id -->
+
+    <VBox spacing="20" alignment="CENTER_LEFT" style="-fx-padding: 100;">
+        <Label text="Learning Today,\nLeading Tomorrow"
+               style="-fx-text-fill: white; -fx-font-size: 40px; -fx-font-weight: bold;"/>
+        <Label text="We are team of talented designers making websites with Bootstrap"
+               style="-fx-text-fill: white; -fx-font-size: 18px;"/>
+        <Button fx:id="getStartedButton"
+                text="Get Started"
+                onAction="#handleGetStarted"
+                style="-fx-font-size: 16px;
+                        -fx-padding: 10 20;
+                        -fx-border-color: white;
+                        -fx-text-fill: white;
+                        -fx-background-color: transparent;
+                        -fx-border-radius: 25;"/>
+    </VBox>
+</StackPane>

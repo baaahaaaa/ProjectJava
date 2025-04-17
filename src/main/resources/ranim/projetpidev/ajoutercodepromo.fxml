@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+
+<AnchorPane xmlns="http://javafx.com/javafx"
+            xmlns:fx="http://javafx.com/fxml"
+            fx:controller="ranim.projetpidev.controllers.AjouterCodePromoController"
+            prefWidth="400" prefHeight="350"
+            stylesheets="@css/AddCP.css">
+
+    <VBox alignment="CENTER" spacing="15" style="-fx-background-color: white; -fx-padding: 30; -fx-background-radius: 10;"
+          AnchorPane.topAnchor="20" AnchorPane.leftAnchor="20" AnchorPane.rightAnchor="20" AnchorPane.bottomAnchor="20">
+
+        <!-- Titre -->
+        <Label text="Ajouter un Code Promo" styleClass="title-label"/>
+
+        <!-- Formulaire -->
+        <GridPane hgap="10" vgap="15" alignment="CENTER">
+            <columnConstraints>
+                <ColumnConstraints halignment="RIGHT" hgrow="NEVER"/>
+                <ColumnConstraints halignment="LEFT" hgrow="ALWAYS"/>
+            </columnConstraints>
+
+            <!-- Code -->
+            <Label text="Code" styleClass="small-label" GridPane.rowIndex="0" GridPane.columnIndex="0"/>
+            <TextField fx:id="codeField" styleClass="compact-field" GridPane.rowIndex="0" GridPane.columnIndex="1"/>
+
+            <!-- Réduction -->
+            <Label text="Réduction (%)" styleClass="small-label" GridPane.rowIndex="1" GridPane.columnIndex="0"/>
+            <HBox alignment="CENTER_LEFT" spacing="5" GridPane.rowIndex="1" GridPane.columnIndex="1">
+                <TextField fx:id="discountValueField" styleClass="compact-field" prefWidth="60"/>
+                <Label text="Ex: 15" styleClass="hint-label"/>
+            </HBox>
+
+            <!-- Date d'expiration -->
+            <Label text="Date d'expiration" styleClass="small-label" GridPane.rowIndex="2" GridPane.columnIndex="0"/>
+            <DatePicker fx:id="expiryDateField" styleClass="compact-date-picker" GridPane.rowIndex="2" GridPane.columnIndex="1"/>
+
+            <!-- Actif -->
+            <Label text="Actif" styleClass="small-label" GridPane.rowIndex="3" GridPane.columnIndex="0"/>
+            <CheckBox fx:id="activeCheckBox" styleClass="compact-checkbox" GridPane.rowIndex="3" GridPane.columnIndex="1"/>
+        </GridPane>
+
+        <!-- Bouton Ajouter -->
+        <Button text="Ajouter" fx:id="addButton" onAction="#addPromocode" styleClass="compact-button"/>
+        <Label fx:id="statusLabel" text="" styleClass="hint-label"/>
+
+    </VBox>
+</AnchorPane>

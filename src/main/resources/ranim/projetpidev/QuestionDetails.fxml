@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane xmlns="http://javafx.com/javafx" xmlns:fx="http://javafx.com/fxml"
+            fx:controller="ranim.projetpidev.controllers.QuestionDetailsController"
+            prefWidth="600.0" prefHeight="300.0"
+            stylesheets="@css/Tasnim.css">
+
+    <VBox spacing="15" alignment="CENTER" AnchorPane.topAnchor="20" AnchorPane.leftAnchor="20">
+        <Label text="Détails de la Question"/>
+
+        <!-- Détails de la question -->
+        <Label fx:id="questionTextLabel" text="Question :" />
+        <Label fx:id="optionALabel" text="A: " />
+        <Label fx:id="optionBLabel" text="B: " />
+        <Label fx:id="optionCLabel" text="C: " />
+        <Label fx:id="correctAnswerLabel" text="Réponse correcte: " />
+
+        <!-- Boutons -->
+        <HBox spacing="10" alignment="CENTER">
+            <Button fx:id="btnModifier" text="Modifier" onAction="#handleModifier"/>
+            <Button fx:id="btnSupprimer" text="Supprimer" onAction="#handleSupprimer"/>
+        </HBox>
+
+        <fx:include source="FooterButtons.fxml"/>
+    </VBox>
+</AnchorPane>

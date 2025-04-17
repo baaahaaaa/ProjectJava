@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.cell.PropertyValueFactory?>
+<?import javafx.scene.image.ImageView?>
+
+<VBox xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ranim.projetpidev.controllers.ResourceController" spacing="10.0" stylesheets="@css/application.css">
+    <padding>
+        <Insets bottom="10.0" left="10.0" right="10.0" top="10.0"/>
+    </padding>
+    <HBox spacing="10.0" alignment="CENTER_RIGHT">
+        <Button text="Add Resource" onAction="#handleAddResource" styleClass="primary-button"/>
+    </HBox>
+    <TableView fx:id="resourceTable" VBox.vgrow="ALWAYS">
+        <columns>
+            <TableColumn fx:id="titleColumn" prefWidth="150.0" text="Title">
+                <cellValueFactory>
+                    <PropertyValueFactory property="title"/>
+                </cellValueFactory>
+            </TableColumn>
+            <TableColumn fx:id="descriptionColumn" prefWidth="200.0" text="Description">
+                <cellValueFactory>
+                    <PropertyValueFactory property="description"/>
+                </cellValueFactory>
+            </TableColumn>
+            <TableColumn fx:id="formatColumn" prefWidth="100.0" text="Format">
+                <cellValueFactory>
+                    <PropertyValueFactory property="format"/>
+                </cellValueFactory>
+            </TableColumn>
+            <TableColumn fx:id="creationDateColumn" prefWidth="120.0" text="Creation Date">
+                <cellValueFactory>
+                    <PropertyValueFactory property="creationDate"/>
+                </cellValueFactory>
+            </TableColumn>
+            <TableColumn fx:id="previewColumn" prefWidth="150.0" text="Preview">
+                <cellValueFactory>
+                    <PropertyValueFactory property="filePath"/>
+                </cellValueFactory>
+            </TableColumn>
+            <TableColumn fx:id="actionsColumn" prefWidth="150.0" text="Actions"/>
+        </columns>
+    </TableView>
+</VBox> 

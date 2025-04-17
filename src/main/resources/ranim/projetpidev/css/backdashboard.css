@@ -1,0 +1,31 @@
+.navbar {
+    -fx-background-color: white;
+    -fx-padding: 10px 20px;
+    -fx-spacing: 10;
+    -fx-border-color: #eee;
+    -fx-border-width: 0 0 1px 0;
+}
+
+.logo {
+    -fx-font-size: 22px;
+    -fx-font-weight: bold;
+    -fx-text-fill: #28a745;
+}
+
+.nav-btn {
+    -fx-background-color: transparent;
+    -fx-text-fill: #333;
+    -fx-font-size: 14px;
+}
+
+.nav-btn:hover {
+    -fx-text-fill: #28a745;
+}
+
+.get-started-btn {
+    -fx-background-color: #28a745;
+    -fx-text-fill: white;
+    -fx-padding: 6 14;
+    -fx-background-radius: 20;
+    -fx-font-weight: bold;
+}
