@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.String?>
+<?import javafx.collections.FXCollections?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.control.TextArea?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+
+<AnchorPane prefHeight="650" prefWidth="800" styleClass="root" stylesheets="@backend.css" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ranim.projetpidev.controllers.internship.BackupdateinternshipController">
+
+    <!-- Logo top‑left -->
+    <ImageView fx:id="logoImage" fitHeight="60" fitWidth="60" layoutX="20" layoutY="20" preserveRatio="true">
+        <image>
+            <Image url="@skylearn.png" />
+        </image>
+    </ImageView>
+
+    <!-- Scrollable form -->
+    <ScrollPane fx:id="updateScrollPane" fitToWidth="true" layoutX="100" layoutY="20" prefHeight="636.0" prefWidth="680">
+        <content>
+            <VBox prefHeight="754.0" prefWidth="678.0" spacing="12" styleClass="card">
+                <Label styleClass="field-label" text="Update Internship" />
+
+                <Label styleClass="field-label" text="Title" />
+                <TextField fx:id="titleField" />
+
+                <Label styleClass="field-label" text="Description" />
+                <TextArea fx:id="descriptionField" prefRowCount="3" />
+
+                <Label styleClass="field-label" text="Company Name" />
+                <TextField fx:id="companyNameField" />
+
+                <Label styleClass="field-label" text="Location" />
+                <TextField fx:id="locationField" />
+
+                <Label styleClass="field-label" text="Duration" />
+                <TextField fx:id="durationField" />
+
+                <Label styleClass="field-label" text="Requirements" />
+                <ComboBox fx:id="requirementsComboBox">
+                    <items>
+                        <FXCollections fx:factory="observableArrayList">
+                            <String fx:value="Business" />
+                            <String fx:value="IT" />
+                            <String fx:value="Marketing" />
+                            <String fx:value="Other" />
+                        </FXCollections>
+                    </items>
+                </ComboBox>
+
+                <Label styleClass="field-label" text="Other Requirements" />
+                <TextArea fx:id="otherRequirementsField" prefRowCount="2" />
+
+                <Label styleClass="field-label" text="Email" />
+                <TextField fx:id="emailField" />
+
+                <Label styleClass="field-label" text="Recompensation Type" />
+                <ComboBox fx:id="recompensationTypeComboBox">
+                    <items>
+                        <FXCollections fx:factory="observableArrayList">
+                            <String fx:value="Recompensated" />
+                            <String fx:value="Free" />
+                        </FXCollections>
+                    </items>
+                </ComboBox>
+
+                <Label styleClass="field-label" text="Recompensation Amount" />
+                <TextField fx:id="recompensationAmountField" />
+
+                <Label styleClass="field-label" text="Currency" />
+                <TextField fx:id="currencyField" />
+
+                <HBox alignment="CENTER_RIGHT" spacing="10" styleClass="hbox">
+                    <Button fx:id="saveBtn" onAction="#saveInternship" styleClass="button-accept" text="Save" />
+                    <Button fx:id="cancelBtn" onAction="#cancelUpdate" text="Cancel">
+                  <styleClass>
+                     <String fx:value="button button-secondary" />
+                     <String fx:value="button-pink" />
+                  </styleClass></Button>
+                </HBox>
+            </VBox>
+        </content>
+    </ScrollPane>
+</AnchorPane>

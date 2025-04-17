@@ -1,0 +1,81 @@
+/* General styling for the details page */
+.title-label {
+    -fx-font-size: 28px;
+    -fx-font-weight: bold;
+    -fx-text-fill: #2a3b4c;
+    -fx-padding: 20px;
+    -fx-alignment: center;
+}
+
+/* Styling for the labels in the details box */
+.label-bold {
+    -fx-font-weight: bold;
+    -fx-text-fill: #3e4a59;
+    -fx-font-size: 16px;
+}
+
+/* Style for the box holding the internship details */
+.details-box {
+    -fx-background-color: #e6f8e6;  /* Soft green background */
+    -fx-padding: 30px;
+    -fx-spacing: 15px;
+    -fx-border-radius: 8px;
+    -fx-effect: innershadow(gaussian, #d1e0e9, 10, 0.0, 0, 2);
+    -fx-alignment: center;
+    -fx-max-width: 600px;
+    -fx-max-height: 400px;
+    -fx-min-width: 400px;
+}
+
+/* Styling for the action buttons */
+.btn-primary {
+    -fx-background-color: #25cc00;
+    -fx-text-fill: white;
+    -fx-padding: 12px 24px;
+    -fx-background-radius: 8px;
+    -fx-font-size: 16px;
+}
+
+.btn-primary:hover {
+    -fx-background-color: #005a8e;
+}
+
+.btn-secondary {
+    -fx-background-color: #f0f0f0;
+    -fx-text-fill: #0c0d0e;
+    -fx-padding: 12px 24px;
+    -fx-background-radius: 8px;
+    -fx-font-size: 16px;
+}
+
+.btn-red {
+    -fx-background-color: #b43f3f;
+    -fx-text-fill: #ffffff;
+    -fx-padding: 12px 24px;
+    -fx-background-radius: 8px;
+    -fx-font-size: 16px;
+}
+
+.btn-orange {
+    -fx-background-color: #fbac53;
+    -fx-text-fill: #ffffff;
+    -fx-padding: 12px 24px;
+    -fx-background-radius: 8px;
+    -fx-font-size: 16px;
+}
+
+.btn-secondary:hover {
+    -fx-background-color: #e0e0e0;
+}
+
+/* Layout for the buttons */
+.hbox {
+    -fx-spacing: 25px;
+    -fx-alignment: center;
+}
+
+/* Centering the VBox */
+.vbox {
+    -fx-alignment: center;
+    -fx-spacing: 20px;
+}

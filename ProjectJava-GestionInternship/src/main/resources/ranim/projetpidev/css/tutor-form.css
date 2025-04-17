@@ -1,0 +1,40 @@
+AnchorPane {
+    -fx-background-color: linear-gradient(to right, #f1f8e9, #c5e1a5);
+    -fx-padding: 20;
+}
+
+.welcome-label {
+    -fx-font-size: 22px;
+    -fx-font-weight: bold;
+    -fx-text-fill: #2e7d32;
+    -fx-padding: 0 0 8 0;
+}
+
+.title-label {
+    -fx-font-size: 16px;
+    -fx-font-weight: bold;
+    -fx-text-fill: #388e3c;
+    -fx-padding: 0 0 15 0;
+}
+
+.text-field, .password-field, .date-picker {
+    -fx-pref-width: 320px;
+    -fx-padding: 10;
+    -fx-background-radius: 8;
+    -fx-border-radius: 8;
+    -fx-background-color: #ffffff;
+    -fx-border-color: #aed581;
+}
+
+.submit-button {
+    -fx-background-color: #43a047;
+    -fx-text-fill: white;
+    -fx-font-weight: bold;
+    -fx-padding: 10 20;
+    -fx-background-radius: 8;
+    -fx-cursor: hand;
+}
+
+.submit-button:hover {
+    -fx-background-color: #2e7d32;
+}

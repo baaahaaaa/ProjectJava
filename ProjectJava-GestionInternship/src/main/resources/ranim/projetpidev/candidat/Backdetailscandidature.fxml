@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextArea?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+
+<AnchorPane prefHeight="507.0" prefWidth="878.0" styleClass="root" stylesheets="@detailscandidature.css" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ranim.projetpidev.controllers.candidat.BackdetailscandidatureController">
+
+    <!-- Titre de la page -->
+    <Label layoutX="20" layoutY="20" styleClass="page-title" text="Application Details" />
+
+    <!-- Bouton retour -->
+    <Button fx:id="backBtn" layoutX="707.0" layoutY="18.0" onAction="#backToList" styleClass="button-back" text="Back to Applications" />
+
+    <!-- Card centrale -->
+    <VBox layoutX="89.0" layoutY="62.0" prefHeight="408.0" prefWidth="750.0" spacing="20" styleClass="card">
+
+        <!-- Nom du candidat -->
+        <Label fx:id="fullNameLabel" styleClass="candidate-name" text="John Doe" />
+
+        <!-- Informations essentielles -->
+        <VBox spacing="10" styleClass="info-list">
+            <HBox spacing="8">
+                <Label styleClass="info-key" text="Email:" />
+                <Label fx:id="emailLabel" styleClass="info-value" text="john.doe@example.com" />
+            </HBox>
+            <HBox spacing="8">
+                <Label styleClass="info-key" text="Phone Number:" />
+                <Label fx:id="phoneLabel" styleClass="info-value" text="12345678" />
+            </HBox>
+        </VBox>
+
+        <!-- Motivation -->
+        <VBox spacing="5">
+            <Label styleClass="section-label" text="Motivation:" />
+            <TextArea fx:id="motivationLabel" editable="false" styleClass="motivation-area" wrapText="true" />
+        </VBox>
+
+        <!-- Actions Accept / Reject -->
+        <HBox alignment="CENTER" spacing="20" styleClass="actions">
+            <Button fx:id="acceptBtn" onAction="#acceptCandidate" styleClass="button-accept" text="Accept" />
+            <Button fx:id="rejectBtn" onAction="#rejectCandidate" styleClass="button-reject" text="Reject" />
+        </HBox>
+    </VBox>
+</AnchorPane>

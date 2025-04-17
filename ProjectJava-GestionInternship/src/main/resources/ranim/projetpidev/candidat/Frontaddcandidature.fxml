@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.DatePicker?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.control.Slider?>
+<?import javafx.scene.control.TextArea?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+
+<AnchorPane stylesheets="@candidat.css" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ranim.projetpidev.controllers.candidat.AddCandidatureController">
+
+    <!-- Scrollable form -->
+    <ScrollPane fx:id="formScrollPane" layoutX="20" layoutY="20" prefHeight="700" prefWidth="660">
+        <content>
+            <VBox prefHeight="815.0" prefWidth="647.0" spacing="15" styleClass="form-card">
+                <padding>
+                    <Insets bottom="20" left="20" right="20" top="20" />
+                </padding>
+
+                <Label styleClass="section-label" text="Apply for Internship" />
+
+                <Label styleClass="field-label" text="Full Name" />
+                <TextField fx:id="fullNameField" styleClass="input-field" />
+
+                <Label styleClass="field-label" text="Email" />
+                <TextField fx:id="emailField" styleClass="input-field" />
+
+                <Label styleClass="field-label" text="Phone Number" />
+                <TextField fx:id="phoneField" styleClass="input-field" />
+
+                <Label styleClass="field-label" text="Motivation" />
+                <TextArea fx:id="motivationField" prefRowCount="5" styleClass="input-field" wrapText="true" />
+
+                <Label styleClass="field-label" text="CV File" />
+                <HBox spacing="10">
+                    <TextField fx:id="cvField" editable="false" prefHeight="38.0" prefWidth="133.0" styleClass="input-field" />
+                    <Button fx:id="browseCvButton" onAction="#browseCvFile" prefWidth="556.0" styleClass="button-primary" text="Browse..." />
+                </HBox>
+
+                <Label styleClass="field-label" text="Interview Date" />
+                <DatePicker fx:id="interviewDatePicker" styleClass="input-field" />
+
+                <HBox alignment="CENTER_RIGHT" spacing="15">
+                    <Button fx:id="cancelButton" onAction="#goToInternshipDetails" styleClass="button-reject" text="Cancel" />
+                    <Button fx:id="submitButton" onAction="#submitApplication" styleClass="button-accept" text="Submit" />
+                </HBox>
+            </VBox>
+        </content>
+    </ScrollPane>
+
+    <Slider fx:id="scrollSlider" layoutX="700" layoutY="20" orientation="VERTICAL" prefHeight="700" />
+</AnchorPane>

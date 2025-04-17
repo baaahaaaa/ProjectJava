@@ -1,0 +1,94 @@
+/* Front Details Styles */
+
+/* Racine */
+#rootFront {
+    -fx-background-color: #f9f9f9;
+    -fx-padding: 20px;
+    -fx-font-family: 'Segoe UI', sans-serif;
+}
+
+/* Carte centrale */
+#frontDetailsCard {
+    -fx-background-color: white;
+    -fx-background-radius: 8px;
+    -fx-padding: 20px;
+    -fx-spacing: 15px;
+    -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.1), 10, 0, 0, 4);
+}
+
+/* Titre */
+#titleLabel {
+    -fx-font-size: 24px;
+    -fx-font-weight: bold;
+    -fx-text-fill: #333333;
+}
+
+/* Clés d’info */
+#keyCompany,
+#keyLocation,
+#keyDuration,
+#keyRequirements,
+#keyEmail,
+#keyRecomp {
+    -fx-font-size: 14px;
+    -fx-font-weight: bold;
+    -fx-text-fill: #333333;
+}
+
+/* Valeurs d’info */
+#valueCompany,
+#valueLocation,
+#valueDuration,
+#valueRequirements,
+#valueEmail,
+#valueRecomp {
+    -fx-font-size: 14px;
+    -fx-text-fill: #555555;
+}
+
+/* Séparateur */
+#separator {
+    -fx-background-color: #e0e0e0;
+    -fx-min-height: 1px;
+}
+
+/* Description */
+#descriptionLabel {
+    -fx-font-size: 14px;
+    -fx-text-fill: #555555;
+}
+
+/* Map */
+#mapView {
+    -fx-background-color: #eee;
+    -fx-border-radius: 5px;
+    -fx-background-radius: 5px;
+    -fx-min-height: 200px;
+}
+
+/* Boutons */
+#applyBtn {
+    -fx-background-color: #4caf50;
+    -fx-text-fill: white;
+}
+#applyBtn:hover { -fx-opacity: 0.9; }
+
+#resultBtn {
+    -fx-background-color: #009688;
+    -fx-text-fill: white;
+}
+#resultBtn:hover { -fx-opacity: 0.9; }
+
+#feedbackBtn {
+    -fx-background-color: #2196f3;
+    -fx-text-fill: white;
+}
+#feedbackBtn:hover { -fx-opacity: 0.9; }
+
+/* Feedback list */
+#feedbackListView {
+    -fx-background-color: white;
+    -fx-border-color: #ddd;
+    -fx-border-radius: 5px;
+    -fx-background-radius: 5px;
+}

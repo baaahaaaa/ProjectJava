@@ -1,0 +1,155 @@
+/* candidat.css (base étendue) */
+/* Origine » :contentReference[oaicite:0]{index=0}&#8203;:contentReference[oaicite:1]{index=1} */
+
+/* Fond général de toutes les vues */
+.root {
+    -fx-background-color: linear-gradient(to bottom right, #f0f4f8, #d9f5f9);
+}
+
+/* ———————————————————————————————————
+   1) Liste des candidatures
+   ——————————————————————————————————— */
+.list-container {
+    -fx-padding: 20px;
+}
+
+.table-view {
+    -fx-background-color: transparent;
+    -fx-border-color: transparent;
+    -fx-table-cell-border-color: transparent;
+}
+
+/* En‑têtes */
+.table-view .column-header-background {
+    -fx-background-color: #e8f5e9;
+}
+.table-view .column-header .label {
+    -fx-text-fill: #2e7d32;
+    -fx-font-weight: bold;
+}
+
+/* Lignes alternées */
+.table-row-cell:odd {
+    -fx-background-color: #f7fbf8;
+}
+.table-row-cell:even {
+    -fx-background-color: white;
+}
+
+/* Ligne sélectionnée */
+.table-row-cell:selected {
+    -fx-background-color: #c8e6c9;
+}
+
+/* Hover sur la ligne */
+.table-row-cell:hover {
+    -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.08), 4, 0, 0, 2);
+    -fx-cursor: hand;
+}
+
+/* ———————————————————————————————————
+   2) Formulaire d’ajout de candidature
+   ——————————————————————————————————— */
+.form-card {
+    -fx-background-color: linear-gradient(to bottom right, #e3f2fd, #e8f5e9);
+    -fx-background-radius: 16px;
+    -fx-padding: 30px;
+    -fx-spacing: 20px;
+    -fx-effect: dropshadow(gaussian, rgba(200,230,201,0.5), 10, 0, 0, 4);
+}
+
+.section-label {
+    -fx-font-size: 20px;
+    -fx-font-weight: bold;
+    -fx-text-fill: #2e7d32;
+}
+
+.input-field {
+    -fx-pref-width: 100%;
+    -fx-background-radius: 8px;
+    -fx-border-radius: 8px;
+    -fx-border-color: #cccccc;
+    -fx-border-width: 1px;
+    -fx-padding: 8px;
+    -fx-font-size: 14px;
+}
+.input-field:focused {
+    -fx-border-color: #42a5f5;
+    -fx-effect: dropshadow(gaussian, rgba(66,165,245,0.3), 4, 0, 0, 2);
+}
+
+/* ———————————————————————————————————
+   3) Messages « Accepté » / « Refusé »
+   ——————————————————————————————————— */
+.message-card {
+    -fx-background-radius: 16px;
+    -fx-padding: 40px;
+    -fx-alignment: center;
+    -fx-spacing: 20px;
+    -fx-max-width: 400px;
+    -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.1), 8, 0, 0, 4);
+}
+.message-success {
+    -fx-background-color: #e8f5e9;
+    -fx-border-color: #66bb6a;
+    -fx-border-width: 2px;
+}
+.message-error {
+    -fx-background-color: #ffebee;
+    -fx-border-color: #ef5350;
+    -fx-border-width: 2px;
+}
+
+.message-icon {
+    -fx-font-size: 48px;
+}
+.message-text {
+    -fx-font-size: 18px;
+    -fx-text-fill: #333333;
+}
+
+/* ———————————————————————————————————
+   4) Boutons (hérités)
+   ——————————————————————————————————— */
+.button {
+    -fx-font-size: 14px;
+    -fx-font-weight: bold;
+    -fx-background-radius: 8px;
+    -fx-padding: 10px 20px;
+    -fx-cursor: hand;
+    -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.15), 4, 0, 0, 2);
+    -fx-transition: all 200ms ease;
+    -fx-text-fill: white;
+}
+.button:hover {
+    -fx-translate-y: -2px;
+    -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.25), 8, 0, 0, 4);
+}
+
+.button-primary {
+    -fx-background-color: #42a5f5;
+}
+.button-primary:hover {
+    -fx-background-color: #1e88e5;
+}
+
+.button-accept {
+    -fx-background-color: #66bb6a;
+}
+.button-accept:hover {
+    -fx-background-color: #43a047;
+}
+
+.button-reject {
+    -fx-background-color: #ef5350;
+}
+.button-reject:hover {
+    -fx-background-color: #e53935;
+}
+
+.button-back {
+    -fx-background-color: #42a5f5;
+}
+.button-back:hover {
+    -fx-background-color: #1e88e5;
+}

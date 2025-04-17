@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+
+<AnchorPane fx:id="rootBack" prefHeight="600" prefWidth="867.0" stylesheets="@detailsranimback.css" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ranim.projetpidev.controllers.internship.BackinternshipdetailsController">
+
+    <!-- En‑tête de la page -->
+    <Label layoutX="20" layoutY="10" style="-fx-font-size:18px;-fx-font-weight:bold;" text="Internship Details" />
+
+    <!-- Carte de détails -->
+    <VBox layoutX="274.0" layoutY="68.0" spacing="8" styleClass="back-details-card">
+
+        <!-- Titre du stage -->
+        <Label fx:id="titleLabel" style="-fx-font-size:16px;-fx-font-weight:bold;" text="Stage Test" />
+
+        <!-- Company -->
+        <HBox spacing="6">
+            <Label text="Company:" />
+            <Label fx:id="companyLabel" text="Test Company" />
+        </HBox>
+
+        <!-- Location -->
+        <HBox spacing="6">
+            <Label text="Location:" />
+            <Label fx:id="locationLabel" text="Paris" />
+        </HBox>
+
+        <!-- Description -->
+        <HBox spacing="6">
+            <Label text="Description:" />
+            <Label fx:id="descriptionLabel" text="Description du stage" />
+        </HBox>
+
+        <!-- Requirements -->
+        <HBox spacing="6">
+            <Label text="Requirements:" />
+            <Label fx:id="requirementsLabel" text="Java, SQL" />
+        </HBox>
+
+        <!-- Recompensation -->
+        <HBox spacing="6">
+            <Label text="Recompensation:" />
+            <Label fx:id="recompensationLabel" text="Free Internship" />
+        </HBox>
+
+        <!-- Boutons: Modify, Applications List, Back to List -->
+        <HBox alignment="CENTER_RIGHT" spacing="10">
+            <Button fx:id="modifyBtn" onAction="#modifyInternship" text="Modify" />
+            <Button fx:id="applicationsListBtn" onAction="#applicationsList" text="Applications List" />
+            <Button fx:id="backBtn" onAction="#backToList" text="Back to List" />
+        </HBox>
+    </VBox>
+
+    <!-- Liste intégrée -->
+    <VBox layoutX="50" layoutY="300" spacing="8" styleClass="back-list-card">
+
+        <Label style="-fx-font-size:16px;" text="Internship List" />
+
+        <TableView fx:id="internshipTable" prefHeight="200.0" prefWidth="700.0">
+            <columns>
+                <TableColumn fx:id="companyNameCol" prefWidth="150" text="Company Name" />
+                <TableColumn fx:id="titleCol" prefWidth="150" text="Title" />
+                <TableColumn fx:id="locationCol" prefWidth="150" text="Location" />
+                <TableColumn fx:id="recompensationCol" prefWidth="150" text="Recompensation" />
+                <TableColumn fx:id="actionsCol" prefWidth="97.5999755859375" text="Actions" />
+            </columns>
+        </TableView>
+    </VBox>
+</AnchorPane>
