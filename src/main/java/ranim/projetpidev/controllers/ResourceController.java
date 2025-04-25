@@ -56,7 +56,7 @@ public class ResourceController {
         descriptionColumn.setCellValueFactory(new PropertyValueFactory<>("description"));
         formatColumn.setCellValueFactory(new PropertyValueFactory<>("format"));
         creationDateColumn.setCellValueFactory(new PropertyValueFactory<>("creationDate"));
-        
+
         // Set up preview column
         previewColumn.setCellFactory(column -> new TableCell<Resource, String>() {
             private final ImageView imageView = new ImageView();
@@ -116,19 +116,19 @@ public class ResourceController {
         return param -> new TableCell<>() {
             private final Button editButton = new Button("Edit");
             private final Button deleteButton = new Button("Delete");
-            
+
             {
                 editButton.setOnAction(event -> {
                     Resource resource = getTableView().getItems().get(getIndex());
                     showResourceDialog(resource);
                 });
-                
+
                 deleteButton.setOnAction(event -> {
                     Resource resource = getTableView().getItems().get(getIndex());
                     handleDelete(resource);
                 });
             }
-            
+
             @Override
             protected void updateItem(Void item, boolean empty) {
                 super.updateItem(item, empty);
@@ -156,28 +156,29 @@ public class ResourceController {
         try {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/esprit/views/ResourceDialog.fxml"));
             VBox dialogPane = loader.load();
-            
-           ranim.projetpidev.controllers.ResourceDialogController controller = loader.getController();
-            
+
+
+            ResourceDialogController controller = loader.getController();
+
             // Convert List to ObservableList
             List<Course> courses = courseService.rechercher();
             ObservableList<Course> observableCourses = FXCollections.observableArrayList(courses);
             controller.setCourses(observableCourses);
-            
+
             if (resource != null) {
                 controller.setResource(resource);
             }
-            
+
             Stage dialogStage = new Stage();
             dialogStage.setTitle(resource == null ? "Add Resource" : "Edit Resource");
             dialogStage.initModality(Modality.WINDOW_MODAL);
             dialogStage.initOwner(resourceTable.getScene().getWindow());
             dialogStage.setScene(new Scene(dialogPane));
-            
+
             controller.setDialogStage(dialogStage);
-            
+
             dialogStage.showAndWait();
-            
+
             if (controller.isOkClicked()) {
                 Resource updatedResource = controller.getResource();
                 if (resource == null) {
@@ -202,7 +203,7 @@ public class ResourceController {
         alert.setTitle("Confirm Delete");
         alert.setHeaderText("Delete Resource");
         alert.setContentText("Are you sure you want to delete this resource?");
-        
+
         alert.showAndWait().ifPresent(response -> {
             if (response == ButtonType.OK) {
                 resourceService.supprimer(resource);

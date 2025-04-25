@@ -26,46 +26,46 @@ public class ResourceDialogController {
     @FXML private Button saveButton;
     @FXML private Button cancelButton;
     @FXML private Button browseButton;
-    
+
     private Resource resource;
     private Stage dialogStage;
     private boolean okClicked = false;
     private final CourseService courseService = new CourseService();
-    
+
     @FXML
     private void initialize() {
         // Initialize the date picker with today's date
         creationDatePicker.setValue(LocalDate.now());
-        
+
         // Initialize format combo box
         formatComboBox.getItems().addAll("PDF", "Image");
-        
+
         // Add input validation listeners
         titleField.textProperty().addListener((observable, oldValue, newValue) -> {
             validateInput();
         });
-        
+
         descriptionField.textProperty().addListener((observable, oldValue, newValue) -> {
             validateInput();
         });
-        
+
         courseComboBox.valueProperty().addListener((observable, oldValue, newValue) -> {
             validateInput();
         });
-        
+
         formatComboBox.valueProperty().addListener((observable, oldValue, newValue) -> {
             validateInput();
         });
-        
+
         filePathField.textProperty().addListener((observable, oldValue, newValue) -> {
             validateInput();
         });
     }
-    
+
     public void setDialogStage(Stage dialogStage) {
         this.dialogStage = dialogStage;
     }
-    
+
     public void setCourses(ObservableList<Course> courses) {
         // Convert courses to names
         ObservableList<String> courseNames = FXCollections.observableArrayList();
@@ -74,34 +74,49 @@ public class ResourceDialogController {
         }
         courseComboBox.setItems(courseNames);
     }
-    
+
     public void setResource(Resource resource) {
         this.resource = resource;
-        
+
         if (resource != null) {
             titleField.setText(resource.getTitle());
             descriptionField.setText(resource.getDescription());
-            courseComboBox.setValue(resource.getCourse().getTitle());
+
+            // Check if the course is null before accessing it
+            if (resource.getCourse() != null) {
+                courseComboBox.setValue(resource.getCourse().getTitle());
+            } else {
+                courseComboBox.setValue("No course assigned"); // Or set to any default value
+            }
+
             formatComboBox.setValue(resource.getFormat());
             filePathField.setText(resource.getFilePath());
-            creationDatePicker.setValue(resource.getCreationDate().toLocalDate());
+
+            // Check if the creationDate is null
+            if (resource.getCreationDate() != null) {
+                creationDatePicker.setValue(resource.getCreationDate().toLocalDate());
+            } else {
+                creationDatePicker.setValue(LocalDate.now()); // Set to today's date if null
+            }
         } else {
-            creationDatePicker.setValue(LocalDate.now());
+            // Handle the case where the resource is null (when adding a new resource)
+            creationDatePicker.setValue(LocalDate.now()); // Set to today's date
         }
     }
-    
+
+
     public boolean isOkClicked() {
         return okClicked;
     }
-    
+
     public Resource getResource() {
         if (resource == null) {
             resource = new Resource();
         }
-        
+
         resource.setTitle(titleField.getText());
         resource.setDescription(descriptionField.getText());
-        
+
         // Find the course by name
         String courseName = courseComboBox.getValue();
         if (courseName != null) {
@@ -113,49 +128,49 @@ public class ResourceDialogController {
                 }
             }
         }
-        
+
         resource.setFormat(formatComboBox.getValue());
         resource.setFilePath(filePathField.getText());
         resource.setCreationDate(Date.valueOf(creationDatePicker.getValue()));
-        
+
         return resource;
     }
-    
+
     @FXML
     private void handleBrowse() {
         FileChooser fileChooser = new FileChooser();
         fileChooser.setTitle("Select Resource File");
-        
+
         // Set file filters based on selected format
         String selectedFormat = formatComboBox.getValue();
         if (selectedFormat != null) {
             if (selectedFormat.equals("PDF")) {
                 fileChooser.getExtensionFilters().add(
-                    new FileChooser.ExtensionFilter("PDF Files", "*.pdf")
+                        new FileChooser.ExtensionFilter("PDF Files", "*.pdf")
                 );
             } else if (selectedFormat.equals("Image")) {
                 fileChooser.getExtensionFilters().add(
-                    new FileChooser.ExtensionFilter("Image Files", "*.png", "*.jpg", "*.jpeg", "*.gif")
+                        new FileChooser.ExtensionFilter("Image Files", "*.png", "*.jpg", "*.jpeg", "*.gif")
                 );
             }
         }
-        
+
         File selectedFile = fileChooser.showOpenDialog(dialogStage);
         if (selectedFile != null) {
             filePathField.setText(selectedFile.getAbsolutePath());
         }
     }
-    
+
     @FXML
     private void handleSave() {
         if (isInputValid()) {
             if (resource == null) {
                 resource = new Resource();
             }
-            
+
             resource.setTitle(titleField.getText());
             resource.setDescription(descriptionField.getText());
-            
+
             // Find the course by name
             String courseName = courseComboBox.getValue();
             if (courseName != null) {
@@ -167,40 +182,40 @@ public class ResourceDialogController {
                     }
                 }
             }
-            
+
             resource.setFormat(formatComboBox.getValue());
             resource.setFilePath(filePathField.getText());
             resource.setCreationDate(Date.valueOf(creationDatePicker.getValue()));
-            
+
             okClicked = true;
             dialogStage.close();
         }
     }
-    
+
     @FXML
     private void handleCancel() {
         dialogStage.close();
     }
-    
+
     private boolean isInputValid() {
         String errorMessage = "";
-        
+
         if (titleField.getText() == null || titleField.getText().trim().isEmpty()) {
             errorMessage += "Title is required!\n";
         }
-        
+
         if (descriptionField.getText() == null || descriptionField.getText().trim().isEmpty()) {
             errorMessage += "Description is required!\n";
         }
-        
+
         if (courseComboBox.getValue() == null) {
             errorMessage += "Course is required!\n";
         }
-        
+
         if (formatComboBox.getValue() == null) {
             errorMessage += "Format is required!\n";
         }
-        
+
         if (filePathField.getText() == null || filePathField.getText().trim().isEmpty()) {
             errorMessage += "File path is required!\n";
         } else {
@@ -218,11 +233,11 @@ public class ResourceDialogController {
                 }
             }
         }
-        
+
         if (creationDatePicker.getValue() == null) {
             errorMessage += "Creation date is required!\n";
         }
-        
+
         if (errorMessage.length() == 0) {
             return true;
         } else {
@@ -235,26 +250,26 @@ public class ResourceDialogController {
             return false;
         }
     }
-    
+
     private void validateInput() {
         String errorMessage = "";
-        
+
         if (titleField.getText() == null || titleField.getText().trim().isEmpty()) {
             errorMessage += "Title is required!\n";
         }
-        
+
         if (descriptionField.getText() == null || descriptionField.getText().trim().isEmpty()) {
             errorMessage += "Description is required!\n";
         }
-        
+
         if (courseComboBox.getValue() == null) {
             errorMessage += "Course is required!\n";
         }
-        
+
         if (formatComboBox.getValue() == null) {
             errorMessage += "Format is required!\n";
         }
-        
+
         if (filePathField.getText() == null || filePathField.getText().trim().isEmpty()) {
             errorMessage += "File path is required!\n";
         } else {
@@ -272,16 +287,16 @@ public class ResourceDialogController {
                 }
             }
         }
-        
+
         saveButton.setDisable(!errorMessage.isEmpty());
     }
 
     private boolean isImageFile(String filePath) {
         String lowerCasePath = filePath.toLowerCase();
-        return lowerCasePath.endsWith(".jpg") || 
-               lowerCasePath.endsWith(".jpeg") || 
-               lowerCasePath.endsWith(".png") || 
-               lowerCasePath.endsWith(".gif") || 
-               lowerCasePath.endsWith(".bmp");
+        return lowerCasePath.endsWith(".jpg") ||
+                lowerCasePath.endsWith(".jpeg") ||
+                lowerCasePath.endsWith(".png") ||
+                lowerCasePath.endsWith(".gif") ||
+                lowerCasePath.endsWith(".bmp");
     }
 } 
