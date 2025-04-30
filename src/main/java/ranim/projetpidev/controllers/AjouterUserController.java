@@ -17,7 +17,9 @@ import ranim.projetpidev.services.MailService;
 import ranim.projetpidev.services.UserService;
 
 import java.sql.SQLException;
+import java.sql.Timestamp;
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 
 public class AjouterUserController {
@@ -84,13 +86,19 @@ public class AjouterUserController {
             return;  // Si la validation échoue, on arrête l'ajout et on affiche l'erreur
         }
         String activationCode = userService.generateActivationCode();
+
+        LocalDateTime expirationTime = LocalDateTime.now().plusHours(24); // Le code sera valable pendant 24 heures
+        user.setExpiration_date(Timestamp.valueOf(expirationTime).toLocalDateTime()); // Convertir en Timestamp pour la base de données
+
+        // Assigner les valeurs
         user.setActivation_code(activationCode);  // Ajouter le code d'activation à l'utilisateur
-        user.setIs_active(false);
+        user.setIs_active(false); // L'utilisateur est inactif au départ
 
         // Si la validation est réussie, on ajoute l'utilisateur à la base de données
         userService.add(user);
-        mailService.sendActivationEmail(user.getEmail(), activationCode);
 
+        // Envoyer l'email d'activation
+        mailService.sendActivationEmail(user.getEmail(), activationCode);
 
         // Afficher un message de succès uniquement après un ajout réussi
         showAlert("✅ Succès", "Agent ajouté avec succès !");
@@ -119,11 +127,22 @@ public class AjouterUserController {
         }
 
         String activationCode = userService.generateActivationCode();
+
+        LocalDateTime expirationTime = LocalDateTime.now().plusHours(24); // Le code sera valable pendant 24 heures
+        user.setExpiration_date(Timestamp.valueOf(expirationTime).toLocalDateTime()); // Convertir en Timestamp pour la base de données
+
+        // Assigner les valeurs
         user.setActivation_code(activationCode);  // Ajouter le code d'activation à l'utilisateur
-        user.setIs_active(false);
+        user.setIs_active(false); // L'utilisateur est inactif au départ
+
+        // Si la validation est réussie, on ajoute l'utilisateur à la base de données
         userService.add(user);
+
+        // Envoyer l'email d'activation
         mailService.sendActivationEmail(user.getEmail(), activationCode);
-        showAlert("✅ Succès", "Student added successfully");
+
+        // Afficher un message de succès uniquement après un ajout réussi
+        showAlert("✅ Succès", "Agent ajouté avec succès !");
         openActivationPage(user);
 
 
@@ -157,12 +176,18 @@ public class AjouterUserController {
             return;  // Si la validation échoue, on arrête l'ajout et on affiche l'erreur
         }
         String activationCode = userService.generateActivationCode();
+
+        LocalDateTime expirationTime = LocalDateTime.now().plusHours(24); // Le code sera valable pendant 24 heures
+        user.setExpiration_date(Timestamp.valueOf(expirationTime).toLocalDateTime()); // Convertir en Timestamp pour la base de données
+
+        // Assigner les valeurs
         user.setActivation_code(activationCode);  // Ajouter le code d'activation à l'utilisateur
-        user.setIs_active(false);
+        user.setIs_active(false); // L'utilisateur est inactif au départ
 
-        // Validation des données
-
+        // Si la validation est réussie, on ajoute l'utilisateur à la base de données
         userService.add(user);
+
+        // Envoyer l'email d'activation
         mailService.sendActivationEmail(user.getEmail(), activationCode);
 
         showAlert("✅ Succès", "Tuteur ajouté avec succès !");

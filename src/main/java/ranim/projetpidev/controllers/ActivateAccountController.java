@@ -11,7 +11,7 @@ import ranim.projetpidev.services.UserService;
 public class ActivateAccountController {
 
     @FXML
-    private TextField activationCodeField;
+    private TextField digit1, digit2, digit3, digit4, digit5, digit6;
 
     @FXML
     private Label messageLabel;
@@ -27,21 +27,21 @@ public class ActivateAccountController {
         displayMaskedEmail();  // Met à jour le label avec l'email masqué
     }
 
-    // Afficher l'email masqué (les deux premiers caractères de l'email uniquement)
     private void displayMaskedEmail() {
-        if (userEmail != null && !userEmail.isEmpty()) {
-            // Extraire les deux premiers caractères de l'email avant le symbole @
-            String firstTwoChars = userEmail.substring(0, 2);  // On récupère les deux premiers caractères de l'email
-            String maskedEmail = firstTwoChars + "***@" + userEmail.split("@")[1];  // Masquer l'email après les deux premiers caractères
-            emailLabel.setText(maskedEmail);  // Mettre à jour le label avec l'email masqué
+        if (user != null && user.getEmail() != null && !user.getEmail().isEmpty()) {
+            String userEmail = user.getEmail();  // Utiliser l'email de l'utilisateur
+            String firstTwoChars = userEmail.substring(0, 2);
+            String maskedEmail = firstTwoChars + "***@" + userEmail.split("@")[1];
+            emailLabel.setText(maskedEmail);  // Affichage de l'email masqué
         }
     }
-
     @FXML
     public void handleActivateAccount() {
-        String activationCode = activationCodeField.getText().trim();
+        // Récupérer les valeurs des TextFields et les concaténer pour former le code complet
+        String code = digit1.getText() + digit2.getText() + digit3.getText() +
+                digit4.getText() + digit5.getText() + digit6.getText();
 
-        boolean isActivated = userService.activateAccount(activationCode);
+        boolean isActivated = userService.activateAccount(code);
 
         if (isActivated) {
             messageLabel.setText("Votre compte a été activé avec succès.");

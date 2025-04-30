@@ -1,5 +1,6 @@
 package ranim.projetpidev.entites;
 
+import java.time.LocalDateTime;
 import java.util.List;
 import java.time.LocalDate;
 
@@ -12,8 +13,8 @@ public class Student extends User {
     }
 
     public Student(int id, String firstName, String lastName, String email, LocalDate entryDate,
-                   String password, String type,boolean is_active,String activation_code) {
-        super(id, firstName, lastName, email, entryDate, password, type,is_active,activation_code);
+                   String password, String type, boolean is_active, String activation_code, LocalDateTime expiration_date) {
+        super(id, firstName, lastName, email, entryDate, password, type,is_active,activation_code,expiration_date);
     }
 
     // Getter et setter pour les codes promo

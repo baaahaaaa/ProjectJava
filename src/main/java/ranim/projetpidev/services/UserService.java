@@ -3,15 +3,21 @@ package ranim.projetpidev.services;
 import ranim.projetpidev.entites.*;
 import ranim.projetpidev.tools.MyDataBase;
 
+import javax.mail.MessagingException;
+import javax.mail.Multipart;
+import javax.mail.Transport;
+import javax.mail.internet.MimeMessage;
+import javax.mail.internet.MimeMultipart;
 import java.sql.*;
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
 
 public class UserService implements IServices<User> {
 
-
+User user = new User();
 
     @Override
     public void add(User user) throws SQLException {
@@ -22,8 +28,8 @@ public class UserService implements IServices<User> {
             return;  // Si les validations échouent, on arrête l'ajout
         }
 
-        String sql = "INSERT INTO user (first_name, last_name, email, entry_date, password, type, company_name, location, domain) " +
-                "VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)";
+        String sql = "INSERT INTO user (first_name, last_name, email, entry_date, password, type,domain, location, company_name, is_active, activation_code, expiration_date) " +
+                "VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
 
         try (Connection cnx = MyDataBase.getInstance().getCnx();
              PreparedStatement ps = cnx.prepareStatement(sql)) {
@@ -34,9 +40,12 @@ public class UserService implements IServices<User> {
             ps.setDate(4, Date.valueOf(user.getEntryDate()));
             ps.setString(5, user.getPassword());
             ps.setString(6, user.getType());
-            ps.setString(7, user instanceof Agent agent ? agent.getCompanyName() : null);
+            ps.setString(7, user instanceof Tutor tutor ? tutor.getDomain() : null);
             ps.setString(8, user instanceof Agent agent ? agent.getLocation() : null);
-            ps.setString(9, user instanceof Tutor tutor ? tutor.getDomain() : null);
+            ps.setString(9, user instanceof Agent agent ? agent.getCompanyName() : null);
+            ps.setBoolean(10, user.getIs_active());
+            ps.setString(11, user.isActivation_code());
+            ps.setTimestamp(12, Timestamp.valueOf(user.getExpiration_date()));  // Ajout de la date d'expiration
 
             ps.executeUpdate();
             System.out.println("✅ Utilisateur ajouté avec succès.");
@@ -129,18 +138,19 @@ public class UserService implements IServices<User> {
                                 type,
                                 user.getIs_active(),
                                 user.isActivation_code(),
+                                user.getExpiration_date(),
                                 companyName,
                                 location);
                     }
                     case "tutor" -> {
                         String domain = rs.getString("domain");
-                        user = new Tutor(id, firstName, lastName, email, entryDate, password, type, user.getIs_active(),user.isActivation_code(),domain);
+                        user = new Tutor(id, firstName, lastName, email, entryDate, password, type, user.getIs_active(),user.isActivation_code(),user.getExpiration_date(),domain);
                     }
                     case "student" -> {
-                        user = new Student(id, firstName, lastName, email, entryDate, password, type,user.getIs_active(),user.isActivation_code());
+                        user = new Student(id, firstName, lastName, email, entryDate, password, type,user.getIs_active(),user.isActivation_code(),user.getExpiration_date());
                     }
                     case "admin" -> {
-                        user = new Admin(id, firstName, lastName, email, entryDate, password, type,user.getIs_active(),user.isActivation_code());
+                        user = new Admin(id, firstName, lastName, email, entryDate, password, type,user.getIs_active(),user.isActivation_code(),user.getExpiration_date());
                     }
                     default -> {
                         continue;
@@ -255,7 +265,7 @@ public class UserService implements IServices<User> {
         return promocodes; // Retourner la liste des codes promo pour cet étudiant
     }
     public User login(String email, String password) {
-        String req = "SELECT * FROM user WHERE email = ? AND password = ?";
+        String req = "SELECT * FROM user WHERE email = ? AND password = ? AND is_active = TRUE";
         Connection connection = MyDataBase.getInstance().getCnx(); // Connexion à la base de données
 
         try {
@@ -273,15 +283,17 @@ public class UserService implements IServices<User> {
                 u.setPassword(rs.getString("password"));
                 u.setEntryDate(rs.getDate("entry_date").toLocalDate());
                 u.setType(rs.getString("type"));
+                u.setIs_active(rs.getBoolean("is_active"));  // Vérification de si l'utilisateur est actif
                 return u;
             }
         } catch (Exception e) {
-            e.printStackTrace();
+            e.printStackTrace();  // Gestion des erreurs
         }
         return null;
     }
 
-        public static boolean updatePassword(String email, String newPassword) {
+
+    public static boolean updatePassword(String email, String newPassword) {
             try (Connection conn = MyDataBase.getInstance().getCnx()) {
                 String query = "UPDATE user SET password = ? WHERE email = ?";
                 PreparedStatement stmt = conn.prepareStatement(query);
@@ -297,40 +309,50 @@ public class UserService implements IServices<User> {
             }
         }
     public boolean activateAccount(String activationCode) {
-        String query = "UPDATE user SET is_active = TRUE WHERE activation_code = ?";
+        // Requête SQL pour vérifier le code d'activation, que l'utilisateur n'est pas déjà activé, et que le code n'est pas expiré
+        String query = "SELECT * FROM user WHERE is_active = FALSE AND activation_code = ? AND expiration_date > NOW()";
 
         try (Connection con = MyDataBase.getInstance().getCnx();
              PreparedStatement ps = con.prepareStatement(query)) {
 
-            // Remplir le paramètre de la requête avec le code d'activation
-            ps.setString(1, activationCode);
+            ps.setString(1, activationCode);  // Placer le code d'activation dans la requête
 
-            // Exécuter la mise à jour
-            int rowsUpdated = ps.executeUpdate();
-
-            // Retourner vrai si l'utilisateur a été activé
-            return rowsUpdated > 0;  // Si le code d'activation est valide et que l'utilisateur est mis à jour
+            try (ResultSet rs = ps.executeQuery()) {
+                if (rs.next()) {
+                    // Le code est valide et non expiré, l'utilisateur peut être activé
+                    String updateQuery = "UPDATE user SET is_active = TRUE WHERE activation_code = ?";
+                    try (PreparedStatement updatePs = con.prepareStatement(updateQuery)) {
+                        updatePs.setString(1, activationCode);
+                        int rowsUpdated = updatePs.executeUpdate();
+                        return rowsUpdated > 0; // Retourne true si l'utilisateur a été activé avec succès
+                    }
+                } else {
+                    // Code d'activation invalide ou expiré
+                    return false;
+                }
+            }
         } catch (SQLException e) {
             e.printStackTrace();
             return false;  // En cas d'erreur dans la base de données
         }
     }
 
-        public String generateActivationCode() {
-            return UUID.randomUUID().toString().substring(0, 6);  // Génère un code unique de 6 caractères
-        }
 
-        public void sendActivationEmail(String toEmail, String activationCode) {
-            String subject = "Activate Your Account";
-            String body = "Hello,\n\n" +
-                    "Please use the following activation code to activate your account:\n\n" +
-                    activationCode + "\n\n" +
-                    "Best regards,\nYour Team";
 
-            MailService mailService = new MailService();
-            mailService.sendEmail(toEmail, subject, body);
-        }
+    public String generateActivationCode() {
+        // Génère un code unique de 6 caractères
+        String activationCode = Long.toHexString(Double.doubleToLongBits(Math.random())).substring(0, 6);
+
+        // Enregistrer la date d'expiration (par exemple 24 heures après la génération)
+        LocalDateTime expirationTime = LocalDateTime.now().plusHours(24);  // Code valable pendant 24 heures
+        user.setExpiration_date(expirationTime);  // Assurez-vous que cette date est stockée dans la base de données
+
+        return activationCode;
     }
+
+
+
+}
 
 
 

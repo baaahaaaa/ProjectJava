@@ -11,10 +11,10 @@ public class MainFX extends Application {
     @Override
     public void start(Stage stage) throws Exception {
         // Tester la scène Backlisteinternship.fxml
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("/ranim/projetpidev/ActivateAccount.fxml"));
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/ranim/projetpidev/FrontDashboard.fxml"));
         Parent root = loader.load();
         Scene scene = new Scene(root,400, 300);
-        stage.setWidth(1000);  // Largeur de la fenêtre
+        stage.setWidth(1000);
         stage.setHeight(800);
         stage.setTitle("Internship List");
         stage.setScene(scene);

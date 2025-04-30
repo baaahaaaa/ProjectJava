@@ -72,6 +72,7 @@ public class LoginController {
         }
     }
 
+
     public void goToAcceuil(ActionEvent event) {
         loadScene(event, "/ranim/projetpidev/Accueil.fxml");
     }

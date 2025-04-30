@@ -13,9 +13,10 @@ public class User  {
     private String type;
     private boolean is_active;
     private String activation_code;
+    private LocalDateTime expiration_date;
 
     public User() {}
-    public User(int id, String firstName, String lastName, String email, LocalDate entryDate, String password, String type, boolean is_active, String activation_code) {
+    public User(int id, String firstName, String lastName, String email, LocalDate entryDate, String password, String type, boolean is_active, String activation_code, LocalDateTime expiration_date) {
         this.id = id;
         this.firstName = firstName;
         this.lastName = lastName;
@@ -25,6 +26,7 @@ public class User  {
         this.type = type;
         this.is_active = is_active;
         this.activation_code = activation_code;
+        this.expiration_date = expiration_date;
 
     }
     public int getId() {
@@ -78,6 +80,12 @@ public class User  {
     }
     public void setActivation_code(String activation_code) {
         this.activation_code = activation_code;
+    }
+    public LocalDateTime getExpiration_date() {
+        return expiration_date;
+    }
+    public void setExpiration_date(LocalDateTime expiration_date) {
+        this.expiration_date = expiration_date;
     }
 
 

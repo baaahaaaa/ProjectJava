@@ -78,14 +78,80 @@ public class MailService {
 
 
     public void sendActivationEmail(String toEmail, String activationCode) {
-        String subject = "Activate Your Account";  // Sujet de l'email
-        String body = "Hello,\n\n" +
-                "Please use the following code to activate your account:\n\n" +
-                activationCode + "\n\n" +
-                "Best regards,\nYour Team";  // Corps du message avec le code d'activation
+        String subject = "Activate Your Account";
 
-        sendEmail(toEmail, subject, body);  // Appeler la méthode d'envoi d'email avec ces paramètres
+        // Créer le corps du message en HTML avec du CSS
+        String body = "<html>"
+                + "<head>"
+                + "<style>"
+                + "body { font-family: Arial, sans-serif; background-color: #f0f4f8; color: #333; padding: 20px; }"
+                + ".container { width: 100%; max-width: 600px; margin: auto; background-color: #ffffff; padding: 20px; border-radius: 8px; box-shadow: 0 4px 8px rgba(0,0,0,0.1); }"
+                + ".header { background-color: #4CAF50; color: white; padding: 10px 20px; text-align: center; border-radius: 8px 8px 0 0; }"
+                + ".content { padding: 20px; text-align: center; }"
+                + ".button { background-color: #4CAF50; color: white; padding: 10px 20px; font-size: 16px; text-decoration: none; border-radius: 5px; display: inline-block; margin-top: 20px; }"
+                + ".footer { text-align: center; color: #888; font-size: 12px; margin-top: 40px; }"
+                + "</style>"
+                + "</head>"
+                + "<body>"
+                + "<div class='container'>"
+                + "<div class='header'><h1>Account Activation</h1></div>"
+                + "<div class='content'>"
+                + "<p>Hello,</p>"
+                + "<p>Thank you for signing up! To activate your account, please use the following activation code:</p>"
+                + "<h2>" + activationCode + "</h2>"
+                + "<a href='#' class='button'>Activate Account</a>"
+                + "</div>"
+                + "<div class='footer'>"
+                + "<p>Best regards,</p>"
+                + "<p>Your Team</p>"
+                + "</div>"
+                + "</div>"
+                + "</body>"
+                + "</html>";
+
+        // Envoyer l'email
+        MailService mailService = new MailService();
+        mailService.sendEmailWithHtml(toEmail, subject, body);
     }
+    public void sendEmailWithHtml(String toEmail, String subject, String body) {
+        String fromEmail = "tasnimaraar01@gmail.com";  // Ton email
+        String password = "vkpvsgmnucyrfuve";  // Ton mot de passe ou un mot de passe d'application
+
+        Properties properties = new Properties();
+        properties.put("mail.smtp.host", "smtp.gmail.com");
+        properties.put("mail.smtp.port", "587");
+        properties.put("mail.smtp.auth", "true");
+        properties.put("mail.smtp.starttls.enable", "true");
+
+        Session session = Session.getInstance(properties, new Authenticator() {
+            @Override
+            protected PasswordAuthentication getPasswordAuthentication() {
+                return new PasswordAuthentication(fromEmail, password);
+            }
+        });
+
+        try {
+            Message message = new MimeMessage(session);
+            message.setFrom(new InternetAddress(fromEmail));
+            message.setRecipients(Message.RecipientType.TO, InternetAddress.parse(toEmail));
+            message.setSubject(subject);
+
+            // Créer un message avec un contenu HTML
+            MimeBodyPart textPart = new MimeBodyPart();
+            textPart.setContent(body, "text/html");
+
+            Multipart multipart = new MimeMultipart();
+            multipart.addBodyPart(textPart);
+
+            message.setContent(multipart);
+
+            Transport.send(message);
+            System.out.println("Email envoyé avec succès.");
+        } catch (MessagingException e) {
+            e.printStackTrace();
+        }
+    }
+
 }
   //"tasnimaraar01@gmail.com";  // Votre adresse e-mail
 //"vkpvsgmnucyrfuve";

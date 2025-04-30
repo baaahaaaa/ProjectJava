@@ -57,11 +57,11 @@ public class EditUserController {
             User updatedUser;
 
             switch (type) {
-                case "agent" -> updatedUser = new Agent(user.getId(), firstName, lastName, email, entryDate, password, type, user.getIs_active(), user.isActivation_code(),
+                case "agent" -> updatedUser = new Agent(user.getId(), firstName, lastName, email, entryDate, password, type, user.getIs_active(), user.isActivation_code(),user.getExpiration_date(),
                         companyField.getText(), locationField.getText());
-                case "tutor" -> updatedUser = new Tutor(user.getId(), firstName, lastName, email, entryDate, password, type, user.getIs_active(), user.isActivation_code(), domainField.getText());
-                case "student" -> updatedUser = new Student(user.getId(), firstName, lastName, email, entryDate, password, type, user.getIs_active(), user.isActivation_code());
-                case "admin" -> updatedUser = new Admin(user.getId(), firstName, lastName, email, entryDate, password, type,user.getIs_active(),user.isActivation_code());
+                case "tutor" -> updatedUser = new Tutor(user.getId(), firstName, lastName, email, entryDate, password, type, user.getIs_active(), user.isActivation_code(),user.getExpiration_date(), domainField.getText());
+                case "student" -> updatedUser = new Student(user.getId(), firstName, lastName, email, entryDate, password, type, user.getIs_active(), user.isActivation_code(),user.getExpiration_date());
+                case "admin" -> updatedUser = new Admin(user.getId(), firstName, lastName, email, entryDate, password, type,user.getIs_active(),user.isActivation_code(),user.getExpiration_date());
                 default -> throw new IllegalArgumentException("Type inconnu");
             }
 
