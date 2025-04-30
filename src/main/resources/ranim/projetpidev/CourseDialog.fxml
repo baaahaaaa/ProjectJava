@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.geometry.Insets?>
+
+<VBox xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ranim.projetpidev.controllers.CourseDialogController" spacing="10.0" stylesheets="@css/application.css">
+    <padding>
+        <Insets bottom="10.0" left="10.0" right="10.0" top="10.0"/>
+    </padding>
+    <Label text="Title:"/>
+    <TextField fx:id="titleField" styleClass="form-field"/>
+    
+    <Label text="Description:"/>
+    <TextArea fx:id="descriptionField" styleClass="form-field"/>
+    
+    <Label text="Domain:"/>
+    <TextField fx:id="domainField" styleClass="form-field"/>
+    
+    <Label text="Type:"/>
+    <ChoiceBox fx:id="typeChoiceBox" styleClass="form-field"/>
+    
+    <Label text="Price:"/>
+    <TextField fx:id="priceField" styleClass="form-field"/>
+    
+    <Label text="Creation Date:"/>
+    <DatePicker fx:id="creationDatePicker" styleClass="form-field"/>
+    
+    <HBox spacing="10.0" alignment="CENTER_RIGHT">
+        <Button fx:id="saveButton" text="Save" onAction="#handleSave" styleClass="primary-button"/>
+        <Button fx:id="cancelButton" text="Cancel" onAction="#handleCancel" styleClass="secondary-button"/>
+    </HBox>
+</VBox> 

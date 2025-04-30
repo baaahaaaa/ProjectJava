@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<VBox alignment="CENTER" spacing="20" xmlns="http://javafx.com/javafx" xmlns:fx="http://javafx.com/fxml"
+      fx:controller="ranim.projetpidev.controllers.VerifyCodeController" stylesheets="@css/fp.css">
+    <Label text="Verify Code" style="-fx-font-size: 22px; -fx-font-weight: bold;"/>
+    <TextField fx:id="codeField" promptText="Enter the code you received" styleClass="text-field"/>
+    <Button text="Verify" onAction="#handleVerify" styleClass="button"/>
+    <Label fx:id="messageLabel" textFill="red"/>
+</VBox>

@@ -1,0 +1,63 @@
+.root {
+    -fx-font-family: "Arial", sans-serif;
+    -fx-background-color: #f4f7fc; /* Fond léger pour l'application */
+    -fx-padding: 40px;
+}
+
+.label {
+    -fx-font-size: 18px;
+    -fx-text-fill: #333333; /* Texte foncé */
+    -fx-font-weight: bold;
+    -fx-padding: 10px 0;
+}
+
+.button {
+    -fx-background-color: #4CAF50; /* Vert normal */
+    -fx-text-fill: white;
+    -fx-font-weight: bold;
+    -fx-background-radius: 10px;
+    -fx-border-radius: 10px;
+    -fx-padding: 12px 24px;
+    -fx-cursor: hand;
+    -fx-font-size: 16px;
+}
+
+.button:hover {
+    -fx-background-color: #45a049; /* Vert foncé au hover */
+}
+
+.text-field, .password-field {
+    -fx-background-color: #ffffff; /* Fond blanc */
+    -fx-border-color: #4CAF50; /* Bordure verte */
+    -fx-border-radius: 8px;
+    -fx-background-radius: 8px;
+    -fx-padding: 12px;
+    -fx-font-size: 14px;
+    -fx-border-width: 2px;
+    -fx-effect: innershadow(gaussian, #bbb, 3, 0.5, 0, 0);
+}
+
+.text-field:focused, .password-field:focused {
+    -fx-border-color: #45a049; /* Bordure verte plus foncée au focus */
+    -fx-background-color: #f1f9f4; /* Légère couleur de fond quand un champ est focus */
+}
+
+#messageLabel {
+    -fx-text-fill: red;
+    -fx-font-size: 14px;
+    -fx-font-weight: normal;
+}
+
+.vbox {
+    -fx-spacing: 20px;
+    -fx-alignment: center;
+}
+
+.scene {
+    -fx-background-color: #ffffff;
+    -fx-padding: 10px;
+}
+
+#emailField, #codeField {
+    -fx-max-width: 320px;
+}

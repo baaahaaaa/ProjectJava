@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.geometry.Pos?>
+<?import javafx.geometry.Insets?>
+
+<AnchorPane xmlns="http://javafx.com/javafx"
+            xmlns:fx="http://javafx.com/fxml"
+            fx:controller="ranim.projetpidev.controllers.AddEventController"
+            prefHeight="600.0" prefWidth="1000.0" stylesheets="@styles.css">
+    <VBox spacing="20" alignment="CENTER" prefWidth="500" prefHeight="500" VBox.vgrow="ALWAYS"
+          AnchorPane.leftAnchor="50" AnchorPane.rightAnchor="50" AnchorPane.topAnchor="50" AnchorPane.bottomAnchor="50">
+        <Label text="Ajouter un événement" styleClass="form-title" />
+
+        <!-- Event Information Section -->
+        <VBox spacing="15" alignment="CENTER" styleClass="event-info-panel">
+            <TextField fx:id="titleField" promptText="Titre de l'événement" prefWidth="300" styleClass="form-input"/>
+
+            <TextArea fx:id="descriptionField" promptText="Description de l'événement" prefWidth="300" prefHeight="100" styleClass="form-input"/>
+
+            <TextField fx:id="typeField" promptText="Type de l'événement" prefWidth="300" styleClass="form-input"/>
+
+            <TextField fx:id="locationField" promptText="Lieu de l'événement" prefWidth="300" styleClass="form-input"/>
+
+            <DatePicker fx:id="dateEventPicker" promptText="Date de l'événement" prefWidth="300" styleClass="form-input"/>
+
+            <TextField fx:id="priceField" promptText="Prix de l'événement" prefWidth="300" styleClass="form-input"/>
+        </VBox>
+
+        <HBox spacing="15" alignment="CENTER">
+            <Button text="Ajouter l'événement" onAction="#handleAddEvent" styleClass="form-button"/>
+            <Button text="Voir les événements" onAction="#handleShowEvents" styleClass="form-button"/>
+            <Button text="Voir les réservations" onAction="#handleShowReservation" styleClass="form-button"/>
+        </HBox>
+    </VBox>
+</AnchorPane>

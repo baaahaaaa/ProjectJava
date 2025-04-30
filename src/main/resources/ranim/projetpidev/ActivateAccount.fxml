@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<VBox alignment="CENTER" spacing="20" xmlns="http://javafx.com/javafx" xmlns:fx="http://javafx.com/fxml"
+      fx:controller="ranim.projetpidev.controllers.ActivateAccountController" stylesheets="@css/activation.css">
+    <!-- Title Section -->
+    <Label text="Verify your code" style="-fx-font-size: 26px; -fx-font-weight: bold; -fx-text-fill: #ffffff;"/>
+
+    <!-- Subtitle Section -->
+    <Label text="We have sent a code to your email" style="-fx-font-size: 16px; -fx-text-fill: #ffffff; -fx-opacity: 0.8;"/>
+    <Label fx:id="emailLabel" style="-fx-font-size: 16px; -fx-text-fill: #ffffff; -fx-opacity: 0.8;"/>
+
+    <!-- 6-digit Code Input Section -->
+    <HBox spacing="10" alignment="CENTER">
+        <TextField fx:id="digit1" promptText="0" maxWidth="40" styleClass="code-field"/>
+        <TextField fx:id="digit2" promptText="0" maxWidth="40" styleClass="code-field"/>
+        <TextField fx:id="digit3" promptText="0" maxWidth="40" styleClass="code-field"/>
+        <TextField fx:id="digit4" promptText="0" maxWidth="40" styleClass="code-field"/>
+        <TextField fx:id="digit5" promptText="0" maxWidth="40" styleClass="code-field"/>
+        <TextField fx:id="digit6" promptText="0" maxWidth="40" styleClass="code-field"/>
+    </HBox>
+
+    <!-- Verify Button -->
+    <Button text="Verify" onAction="#handleActivateAccount" styleClass="verify-button"/>
+
+    <!-- Message Label for feedback -->
+    <Label fx:id="messageLabel" textFill="red" style="-fx-font-size: 16px;"/>
+</VBox>

@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+
+<AnchorPane prefHeight="600.0" prefWidth="800.0" stylesheets="@backend.css" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ranim.projetpidev.controllers.internship.BacklisteinternshipController">
+
+    <!-- Logo cliquable en haut‑gauche -->
+    <ImageView fx:id="logoImage" fitHeight="50" fitWidth="50" layoutX="10" layoutY="10" onMouseClicked="#navigateToFrontListeInternships" preserveRatio="true">
+        <image>
+            <Image url="@skylearn.png" />
+        </image>
+    </ImageView>
+
+    <!-- TableView ancrée de tous côtés -->
+    <TableView fx:id="internshipTable" styleClass="table-view" AnchorPane.bottomAnchor="74.0" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="74.0">
+        <columns>
+            <TableColumn fx:id="companyNameCol" prefWidth="126.39999961853027" text="Company Name" />
+            <TableColumn fx:id="titleCol" prefWidth="145.5999755859375" text="Title" />
+            <TableColumn fx:id="locationCol" prefWidth="135.20001220703125" text="Location" />
+            <TableColumn fx:id="recompensationCol" prefWidth="143.19998168945312" text="Recompensation" />
+            <TableColumn fx:id="actionsCol" prefWidth="175.20001220703125" text="Actions" />
+        </columns>
+    </TableView>
+
+    <!-- Barre de boutons ancrée en bas -->
+    <HBox spacing="10" styleClass="hbox" AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="10.0">
+        <Button onAction="#refreshButtonClicked" styleClass="button-green" text="Refresh" />
+        <Button onAction="#addNewInternship" styleClass="button-blue" text="Add New Internship" />
+    </HBox>
+</AnchorPane>

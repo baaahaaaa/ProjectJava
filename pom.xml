@@ -14,17 +14,48 @@
 <junit.version>5.10.0</junit.version>  </properties>
 
   <dependencies>
-    <dependency>
-      <groupId>org.openjfx</groupId>
-      <artifactId>javafx-controls</artifactId>
-      <version>17.0.6</version>
-    </dependency>
+
+
       <dependency>
-          <groupId>org.openjfx</groupId>
-          <artifactId>javafx-fxml</artifactId>
-          <version>17.0.6</version>
+          <groupId>com.itextpdf</groupId>
+          <artifactId>kernel</artifactId>
+          <version>7.2.2</version>
       </dependency>
-<dependency>
+
+      <dependency>
+          <groupId>org.mindrot</groupId>
+          <artifactId>jbcrypt</artifactId>
+          <version>0.4</version>
+      </dependency>
+
+      <!-- iText Layout (pour manipuler textes/images) -->
+      <dependency>
+          <groupId>com.itextpdf</groupId>
+          <artifactId>layout</artifactId>
+          <version>7.2.2</version>
+      </dependency>
+
+      <dependency>
+          <groupId>com.sun.mail</groupId>
+          <artifactId>javax.mail</artifactId>
+          <version>1.6.2</version> <!-- Ou utilisez la dernière version disponible -->
+      </dependency>
+
+      <!-- iText Forms (si tu utilises des formulaires PDF) -->
+      <dependency>
+          <groupId>com.itextpdf</groupId>
+          <artifactId>forms</artifactId>
+          <version>7.2.2</version>
+      </dependency>
+
+      <!-- iText PDF/A (si tu veux la norme d'archivage) -->
+      <dependency>
+          <groupId>com.itextpdf</groupId>
+          <artifactId>pdfa</artifactId>
+          <version>7.2.2</version>
+      </dependency>
+
+      <dependency>
       <groupId>org.openjfx</groupId>
       <artifactId>javafx-web</artifactId>
       <version>17.0.6</version>
@@ -103,11 +134,11 @@
       <version>${junit.version}</version>
       <scope>test</scope>
     </dependency>
-    <dependency>
-      <groupId>mysql</groupId>
-      <artifactId>mysql-connector-java</artifactId>
-      <version>8.0.33</version>
-    </dependency>
+      <dependency>
+          <groupId>com.mysql</groupId>
+          <artifactId>mysql-connector-j</artifactId>
+          <version>8.0.33</version>
+      </dependency>
     <dependency>
       <groupId>org.openjfx</groupId>
       <artifactId>javafx-fxml</artifactId>
@@ -118,6 +149,7 @@
       <artifactId>javafx-controls</artifactId>
       <version>21.0.2</version>
     </dependency>
+
   </dependencies>
 
   <build>
@@ -140,7 +172,8 @@
             <!-- Default configuration for running with: mvn clean javafx:run -->
             <id>default-cli</id>
             <configuration>
-              <mainClass>ranim.projetpidev/ranim.projetpidev.HelloApplication</mainClass>
+              <mainClass>ranim.projetpidev.tools.MainFX</mainClass>
+                <module>ranim.projetpidev</module>
               <launcher>app</launcher>
               <jlinkZipName>app</jlinkZipName>
               <jlinkImageName>app</jlinkImageName>

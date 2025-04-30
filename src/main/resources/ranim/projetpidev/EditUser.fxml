@@ -3,7 +3,7 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<AnchorPane xmlns:fx="http://javafx.com/fxml" fx:controller="ranim.projetpidev.controllers.EditUserController" prefWidth="600" prefHeight="500">
+<AnchorPane xmlns:fx="http://javafx.com/javafx" fx:controller="ranim.projetpidev.controllers.EditUserController" prefWidth="600" prefHeight="500" stylesheets="@css/EditUser.css">
     <VBox spacing="10" alignment="CENTER" layoutX="50" layoutY="30">
         <Label text="✏ Modifier Utilisateur" style="-fx-font-size: 18px;"/>
 

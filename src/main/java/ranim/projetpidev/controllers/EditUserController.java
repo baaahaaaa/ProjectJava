@@ -57,12 +57,11 @@ public class EditUserController {
             User updatedUser;
 
             switch (type) {
-                case "agent" -> updatedUser = new Agent(user.getId(), firstName, lastName, email, entryDate, password, type,
+                case "agent" -> updatedUser = new Agent(user.getId(), firstName, lastName, email, entryDate, password, type, user.getIs_active(), user.isActivation_code(),
                         companyField.getText(), locationField.getText());
-                case "tutor" -> updatedUser = new Tutor(user.getId(), firstName, lastName, email, entryDate, password, type,
-                        domainField.getText());
-                case "student" -> updatedUser = new Student(user.getId(), firstName, lastName, email, entryDate, password, type);
-                case "admin" -> updatedUser = new Admin(user.getId(), firstName, lastName, email, entryDate, password, type);
+                case "tutor" -> updatedUser = new Tutor(user.getId(), firstName, lastName, email, entryDate, password, type, user.getIs_active(), user.isActivation_code(), domainField.getText());
+                case "student" -> updatedUser = new Student(user.getId(), firstName, lastName, email, entryDate, password, type, user.getIs_active(), user.isActivation_code());
+                case "admin" -> updatedUser = new Admin(user.getId(), firstName, lastName, email, entryDate, password, type,user.getIs_active(),user.isActivation_code());
                 default -> throw new IllegalArgumentException("Type inconnu");
             }
 

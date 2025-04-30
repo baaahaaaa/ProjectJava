@@ -20,12 +20,12 @@ import ranim.projetpidev.services.UserService;
 import java.io.IOException;
 import java.sql.SQLException;
 import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.List;
 
 public class ListeUserTableController {
 
     @FXML private TableView<User> tableView;
-    @FXML private TableColumn<User, Integer> idCol;
     @FXML private TableColumn<User, String> firstNameCol;
     @FXML private TableColumn<User, String> lastNameCol;
     @FXML private TableColumn<User, String> emailCol;
@@ -38,11 +38,12 @@ public class ListeUserTableController {
     @FXML private ComboBox<String> typeFilter;
     @FXML private TableColumn<User, Void> actionCol;
 
+
+
     private final UserService userService = new UserService();
 
     @FXML
     public void initialize() {
-        idCol.setCellValueFactory(cell -> new SimpleIntegerProperty(cell.getValue().getId()).asObject());
         firstNameCol.setCellValueFactory(cell -> new SimpleStringProperty(cell.getValue().getFirstName()));
         lastNameCol.setCellValueFactory(cell -> new SimpleStringProperty(cell.getValue().getLastName()));
         emailCol.setCellValueFactory(cell -> new SimpleStringProperty(cell.getValue().getEmail()));
@@ -71,12 +72,22 @@ public class ListeUserTableController {
         });
 
         actionCol.setCellFactory(col -> new TableCell<>() {
+            private final Button Code_Promo = new Button("voir les promos");
             private final Button deleteBtn = new Button("🗑 Supprimer");
             private final Button editBtn = new Button("✏ Modifier");
 
             {
+                Code_Promo.setStyle("-fx-background-color: #326584; -fx-text-fill: white;");;
                 deleteBtn.setStyle("-fx-background-color: #e74c3c; -fx-text-fill: white;");
                 editBtn.setStyle("-fx-background-color: #3498db; -fx-text-fill: white;");
+
+                Code_Promo.setOnAction(event -> {
+                    User user = getTableView().getItems().get(getIndex());
+                    if (user instanceof Student student) {
+                        // Ouvrir une nouvelle fenêtre pour afficher les codes promo de cet étudiant
+                        ouvrirCodesPromo(student);
+                    }
+                });
 
                 deleteBtn.setOnAction(event -> {
                     User user = getTableView().getItems().get(getIndex());
@@ -126,7 +137,7 @@ public class ListeUserTableController {
                 if (empty) {
                     setGraphic(null);
                 } else {
-                    HBox hbox = new HBox(10, editBtn, deleteBtn);
+                    HBox hbox = new HBox(10, editBtn, deleteBtn,Code_Promo);
                     setGraphic(hbox);
                 }
             }
@@ -148,7 +159,7 @@ public class ListeUserTableController {
     @FXML
     private void retourAccueil(ActionEvent event) {
         try {
-            Parent root = FXMLLoader.load(getClass().getResource("/ranim/projetpidev/Accueil.fxml"));
+            Parent root = FXMLLoader.load(getClass().getResource("/ranim/projetpidev/FrontDashboard.fxml"));
             Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
             stage.setScene(new Scene(root));
             stage.setTitle("Accueil");
@@ -216,6 +227,31 @@ public class ListeUserTableController {
         alert.setContentText(message);
         alert.showAndWait();
     }
+    private void ouvrirCodesPromo(Student student) {
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/ranim/projetpidev/ListCodePromo.fxml"));
+            Parent root = loader.load();
 
+            ListCodesPromoController controller = loader.getController();
+            controller.afficherCodesPromo(student);  // Passer l'étudiant au contrôleur
+
+            Stage stage = new Stage();
+            stage.setTitle("Codes Promo de " + student.getFirstName() + " " + student.getLastName());
+            stage.setScene(new Scene(root));
+            stage.show();
+        } catch (IOException e) {
+            showAlert("Erreur", "Impossible d'ouvrir la fenêtre des codes promo.");
+        }
+    }
+    public void refreshTable() {
+        try {
+            // Récupérer à nouveau tous les utilisateurs avec leurs codes promo
+            List<User> updatedUsers = userService.getAll();
+            allUsers.setAll(updatedUsers);  // Mettre à jour les données de la table
+            filtrerParType(); // Conserver le filtre actif
+        } catch (SQLException e) {
+            showAlert("Erreur", "Impossible de rafraîchir les données de la table : " + e.getMessage());
+        }
+    }
 
 }

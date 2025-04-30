@@ -11,9 +11,11 @@ public class User  {
     private LocalDate entryDate;
     private String password;
     private String type;
+    private boolean is_active;
+    private String activation_code;
 
     public User() {}
-    public User(int id, String firstName, String lastName, String email, LocalDate entryDate, String password, String type) {
+    public User(int id, String firstName, String lastName, String email, LocalDate entryDate, String password, String type, boolean is_active, String activation_code) {
         this.id = id;
         this.firstName = firstName;
         this.lastName = lastName;
@@ -21,6 +23,8 @@ public class User  {
         this.entryDate = entryDate;
         this.password = password;
         this.type = type;
+        this.is_active = is_active;
+        this.activation_code = activation_code;
 
     }
     public int getId() {
@@ -32,9 +36,7 @@ public class User  {
     public String getFirstName() {
         return firstName;
     }
-    public void setFirstName(String firstName) {
-        this.firstName = firstName;
-    }
+    public void setFirstName(String firstName) {this.firstName = firstName;}
     public String getLastName() {
         return lastName;
     }
@@ -65,5 +67,18 @@ public class User  {
     public void setType(String type) {
         this.type = type;
     }
+    public boolean getIs_active() {
+        return is_active;
+    }
+    public void setIs_active(boolean is_active) {
+        this.is_active = is_active;
+    }
+    public String isActivation_code() {
+        return activation_code;
+    }
+    public void setActivation_code(String activation_code) {
+        this.activation_code = activation_code;
+    }
+
 
 }

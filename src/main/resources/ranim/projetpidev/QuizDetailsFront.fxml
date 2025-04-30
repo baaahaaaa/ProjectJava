@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<VBox xmlns="http://javafx.com/javafx"
+      xmlns:fx="http://javafx.com/fxml"
+      fx:controller="ranim.projetpidev.controllers.QuizDetailsControllerFront"
+      alignment="TOP_CENTER" spacing="15"
+      style="-fx-padding: 30; -fx-background-color: #f9f9f9; -fx-border-color: #ccc; -fx-border-radius: 8; -fx-background-radius: 8;"
+      prefWidth="350" prefHeight="300">
+
+    <Label fx:id="titleLabel"
+           style="-fx-font-size: 20px; -fx-font-weight: bold; -fx-text-fill: #2a2a2a;" />
+
+    <Label fx:id="typeLabel"
+           style="-fx-font-size: 14px; -fx-text-fill: #3b3b3b;" />
+
+    <Label fx:id="descriptionLabel"
+           wrapText="true"
+           maxWidth="300"
+           style="-fx-font-size: 13px; -fx-text-fill: #666;" />
+
+    <Separator style="-fx-padding: 10 0 10 0;" />
+
+    <Label fx:id="nbQuestionsLabel"
+           style="-fx-font-size: 14px; -fx-text-fill: #2c3e50;" />
+
+    <Label fx:id="niveauLabel"
+           style="-fx-font-size: 14px; -fx-text-fill: #2980b9;" />
+
+</VBox>

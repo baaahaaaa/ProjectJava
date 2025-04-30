@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.FlowPane?>
+<?import javafx.scene.layout.Region?>
+<?import javafx.scene.text.Font?>
+
+<VBox xmlns="http://javafx.com/javafx"
+      xmlns:fx="http://javafx.com/fxml"
+      fx:controller="ranim.projetpidev.controllers.ListEventsController"
+      prefHeight="600.0" prefWidth="800.0" spacing="20" stylesheets="@styles.css">
+
+    <padding>
+        <Insets top="20" right="20" bottom="20" left="20"/>
+    </padding>
+
+    <!-- Header with buttons -->
+    <HBox alignment="CENTER_LEFT" spacing="20">
+        <Button text="Rafraîchir" onAction="#handleRefresh" styleClass="header-button"/>
+        <Button text="Retour" onAction="#handleBack" styleClass="header-button"/>
+    </HBox>
+
+    <!-- Scrollable section for events -->
+    <ScrollPane fitToWidth="true" VBox.vgrow="ALWAYS" style="-fx-background-color: transparent; -fx-border-width: 0;">
+        <FlowPane fx:id="eventsContainer" hgap="20" vgap="20" styleClass="events-container">
+            <!-- The events will be added dynamically here with card-style design -->
+        </FlowPane>
+    </ScrollPane>
+</VBox>

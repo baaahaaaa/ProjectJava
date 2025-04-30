@@ -1,0 +1,162 @@
+/* 🌈 Fond général */
+.root {
+    -fx-background-color: linear-gradient(to bottom right, #e0f7fa, #ffffff); /* doux bleu-cyan */
+    -fx-font-family: "Segoe UI", sans-serif;
+}
+
+/* 📋 TableView */
+.table-view {
+    -fx-background-color: #ffffff;
+    -fx-border-color: #b2ebf2;
+    -fx-border-radius: 8px;
+    -fx-padding: 10;
+    -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.1), 5, 0, 0, 2);
+}
+
+/* 📌 En-têtes */
+.table-view .column-header-background {
+    -fx-background-color: #00acc1;
+    -fx-background-radius: 5 5 0 0;
+}
+
+.table-view .column-header .label {
+    -fx-font-weight: bold;
+    -fx-text-fill: white;
+    -fx-font-size: 14px;
+}
+
+/* 📄 Cellules */
+.table-cell {
+    -fx-font-size: 13px;
+    -fx-text-fill: #212121;
+}
+
+/* 🔘 Boutons dans la table */
+.table-cell > .button {
+    -fx-background-color: #4caf50;
+    -fx-text-fill: white;
+    -fx-font-weight: bold;
+    -fx-background-radius: 5px;
+    -fx-padding: 3 10;
+    -fx-cursor: hand;
+}
+
+.table-cell > .button:hover {
+    -fx-background-color: #388e3c;
+}
+
+/* 🟥 Bouton supprimer */
+.table-cell > .button:focused {
+    -fx-background-color: #f44336;
+}
+
+/* ✅ Boutons globaux */
+.button {
+    -fx-background-color: #2196f3;
+    -fx-text-fill: white;
+    -fx-font-size: 14px;
+    -fx-background-radius: 8px;
+    -fx-padding: 6 14;
+    -fx-cursor: hand;
+}
+
+.button:hover {
+    -fx-background-color: #1976d2;
+}
+
+/* 🧾 Label général */
+.label {
+    -fx-font-size: 14px;
+    -fx-text-fill: #0d47a1;
+}
+
+/* 🧠 Titre de section */
+.form-title {
+    -fx-font-size: 22px;
+    -fx-font-weight: bold;
+    -fx-text-fill: #00796b;
+}
+
+.table-view {
+    -fx-background-color: #f0f8ff;
+    -fx-border-color: #c0c0c0;
+    -fx-border-radius: 5;
+    -fx-background-radius: 5;
+}
+
+.table-column {
+    -fx-alignment: CENTER;
+    -fx-font-weight: bold;
+    -fx-text-fill: #2b7a78;
+}
+.quiz-details-pane {
+    -fx-background-color: linear-gradient(to bottom right, #f0f8ff, #e0ffff);
+}
+
+.quiz-title {
+    -fx-font-size: 20px;
+    -fx-font-weight: bold;
+    -fx-text-fill: #1e90ff;
+}
+
+.quiz-subtitle {
+    -fx-font-size: 16px;
+    -fx-text-fill: #4682b4;
+}
+
+.quiz-description {
+    -fx-font-size: 14px;
+    -fx-text-fill: #333;
+    -fx-wrap-text: true;
+    -fx-padding: 0 0 10 0;
+}
+
+.primary-button {
+    -fx-background-color: #2196F3;
+    -fx-text-fill: white;
+    -fx-padding: 8 16;
+    -fx-background-radius: 20;
+    -fx-font-weight: bold;
+}
+
+.secondary-button {
+    -fx-background-color: #03A9F4;
+    -fx-text-fill: white;
+    -fx-padding: 8 16;
+    -fx-background-radius: 20;
+}
+
+.title-label {
+    -fx-font-size: 18px;
+    -fx-font-weight: bold;
+    -fx-text-fill: #333;
+}
+
+.type-label, .desc-label {
+    -fx-font-size: 14px;
+    -fx-text-fill: #555;
+}
+
+.button {
+    -fx-background-color: #4CAF50;
+    -fx-text-fill: white;
+    -fx-padding: 8 16 8 16;
+    -fx-font-weight: bold;
+    -fx-cursor: hand;
+    -fx-background-radius: 5;
+}
+.button {
+    -fx-background-color: #F44336;
+    -fx-text-fill: white;
+    -fx-font-weight: bold;
+    -fx-background-radius: 10;
+}
+
+
+.button {
+    -fx-background-color: linear-gradient(to right, #007bff, #00c6ff);
+    -fx-text-fill: white;
+    -fx-font-weight: bold;
+    -fx-background-radius: 8;
+    -fx-cursor: hand;
+}

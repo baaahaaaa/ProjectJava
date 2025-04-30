@@ -1,0 +1,84 @@
+/* Fond général */
+.root {
+    -fx-background-color: #f0f2f5;
+}
+
+/* Titre de page */
+.page-title {
+    -fx-font-size: 20px;
+    -fx-font-weight: bold;
+    -fx-text-fill: #333333;
+}
+
+/* Bouton de retour */
+.button-back {
+    -fx-background-color: #9e9e9e;
+    -fx-text-fill: white;
+    -fx-background-radius: 4px;
+    -fx-padding: 8 16;
+}
+.button-back:hover {
+    -fx-background-color: #7e7e7e;
+}
+
+/* Conteneur “card” */
+.card {
+    -fx-background-color: white;
+    -fx-background-radius: 8px;
+    -fx-padding: 30 40;
+    -fx-spacing: 20;
+    -fx-pref-width: 700px;
+    -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.1), 10, 0, 0, 4);
+}
+
+/* Nom du candidat */
+.candidate-name {
+    -fx-font-size: 24px;
+    -fx-font-weight: bold;
+    -fx-text-fill: #222222;
+}
+
+/* Liste des infos */
+.info-list .info-key {
+    -fx-font-weight: bold;
+    -fx-text-fill: #555555;
+}
+.info-list .info-value {
+    -fx-text-fill: #333333;
+}
+
+/* Section “Motivation” */
+.section-label {
+    -fx-font-size: 14px;
+    -fx-font-weight: bold;
+    -fx-text-fill: #444444;
+}
+.motivation-area {
+    -fx-background-color: #fafafa;
+    -fx-background-radius: 4px;
+    -fx-border-radius: 4px;
+    -fx-border-color: #dddddd;
+    -fx-padding: 10;
+    -fx-pref-height: 120px;
+}
+
+/* Boutons Accept / Reject */
+.actions .button-accept {
+    -fx-background-color: #00c4b1;
+    -fx-text-fill: white;
+    -fx-background-radius: 6px;
+    -fx-padding: 8 24;
+}
+.actions .button-accept:hover {
+    -fx-background-color: #00a794;
+}
+
+.actions .button-reject {
+    -fx-background-color: #ff4081;
+    -fx-text-fill: white;
+    -fx-background-radius: 6px;
+    -fx-padding: 8 24;
+}
+.actions .button-reject:hover {
+    -fx-background-color: #e7337a;
+}

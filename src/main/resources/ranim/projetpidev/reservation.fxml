@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Spinner?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.control.TextArea?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+<AnchorPane xmlns="http://javafx.com/javafx"
+            xmlns:fx="http://javafx.com/fxml"
+            fx:controller="ranim.projetpidev.controllers.ReservationController"
+            prefHeight="600.0" prefWidth="1000.0"
+            stylesheets="@styles.css">
+    <!-- Centering the form with VBox and padding -->
+    <VBox spacing="20" alignment="CENTER" layoutX="500" layoutY="50" prefWidth="550" VBox.vgrow="ALWAYS">
+        <Label text="Réservation d'Événement" styleClass="form-title">
+            <font>
+                <Font name="System Bold" size="24.0"/>
+            </font>
+        </Label>
+
+        <!-- Event Information Section -->
+        <VBox spacing="15" styleClass="event-info-panel" alignment="CENTER">
+            <Label text="Informations sur l'Événement" styleClass="section-title"/>
+
+            <HBox spacing="15" alignment="CENTER">
+                <Label text="Titre:" styleClass="field-label" />
+                <Label fx:id="eventTitleLabel" styleClass="event-detail"/>
+            </HBox>
+
+            <HBox spacing="15" alignment="CENTER">
+                <Label text="Date:" styleClass="field-label" />
+                <Label fx:id="eventDateLabel" styleClass="event-detail"/>
+            </HBox>
+
+            <HBox spacing="15" alignment="CENTER">
+                <Label text="Lieu:" styleClass="field-label" />
+                <Label fx:id="eventLocationLabel" styleClass="event-detail"/>
+            </HBox>
+
+            <HBox spacing="15" alignment="CENTER">
+                <Label text="Prix par place:" styleClass="field-label" />
+                <Label fx:id="eventPriceLabel" styleClass="event-detail"/>
+            </HBox>
+        </VBox>
+
+        <!-- Reservation Information Section -->
+        <VBox spacing="15" alignment="CENTER">
+            <Label text="Informations de Réservation" styleClass="section-title"/>
+
+            <HBox spacing="15" alignment="CENTER">
+                <Label text="Nom et Prénom:" prefWidth="130" styleClass="field-label"/>
+                <TextField fx:id="nameField" prefWidth="300" promptText="Votre nom complet"/>
+            </HBox>
+
+            <HBox spacing="15" alignment="CENTER">
+                <Label text="Téléphone:" prefWidth="130" styleClass="field-label"/>
+                <TextField fx:id="phoneNumberField" prefWidth="300" promptText="Votre numéro de téléphone"/>
+            </HBox>
+
+            <HBox spacing="15" alignment="CENTER">
+                <Label text="Nombre de places:" prefWidth="130" styleClass="field-label"/>
+                <Spinner fx:id="nbPlacesSpinner" prefWidth="100" editable="true" />
+                <Button text="Calculer prix" onAction="#handleCalculatePrice" styleClass="calculate-button"/>
+            </HBox>
+
+            <HBox spacing="15" alignment="CENTER">
+                <Label text="Prix total:" prefWidth="130" styleClass="field-label"/>
+                <Label fx:id="totalPriceLabel" styleClass="total-price"/>
+            </HBox>
+
+            <HBox spacing="15" alignment="CENTER">
+                <Label text="Demande spéciale:" prefWidth="130" styleClass="field-label"/>
+                <TextArea fx:id="specialRequestField" prefWidth="300" prefHeight="80" promptText="Vos remarques ou demandes spéciales"/>
+            </HBox>
+        </VBox>
+
+        <!-- Buttons -->
+        <HBox spacing="20" alignment="CENTER">
+            <Button text="Réserver" onAction="#handleReservation" styleClass="reserve-button"/>
+            <Button text="Annuler" onAction="#handleCancel" styleClass="cancel-button"/>
+        </HBox>
+
+        <!-- Status message -->
+        <Text fx:id="statusText" styleClass="status-text"/>
+    </VBox>
+</AnchorPane>

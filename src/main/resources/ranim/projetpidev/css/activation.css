@@ -1,0 +1,49 @@
+/* General Styling */
+.root {
+    -fx-font-family: "Arial", sans-serif;
+    -fx-background-color: #4CAF50; /* Green background */
+    -fx-padding: 50px;
+}
+
+/* Title Section */
+.label {
+    -fx-font-size: 18px;
+    -fx-text-fill: #ffffff;
+}
+
+/* Input Fields for the 6-digit code */
+.code-field {
+    -fx-background-color: #ffffff;
+    -fx-border-radius: 8px;
+    -fx-border-color: #4CAF50;
+    -fx-font-size: 18px;
+    -fx-text-fill: #4CAF50;
+    -fx-padding: 10px;
+    -fx-background-radius: 8px;
+    -fx-width: 50px;
+    -fx-alignment: center;
+}
+
+.code-field:focused {
+    -fx-border-color: #3575d6; /* Darker green on focus */
+}
+
+/* Verify Button */
+.verify-button {
+    -fx-background-color: #3575d6; /* Blue Button for verification */
+    -fx-text-fill: white;
+    -fx-font-size: 16px;
+    -fx-padding: 12px 40px;
+    -fx-background-radius: 8px;
+    -fx-cursor: hand;
+}
+
+.verify-button:hover {
+    -fx-background-color: #2a60c7; /* Darker blue on hover */
+}
+
+/* Feedback Message Label */
+#messageLabel {
+    -fx-font-size: 14px;
+    -fx-text-fill: red;
+}

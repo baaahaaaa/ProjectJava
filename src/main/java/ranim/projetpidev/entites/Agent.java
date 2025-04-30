@@ -9,8 +9,8 @@ public class Agent extends User {
     }
 
     public Agent(int id, String firstName, String lastName, String email, java.time.LocalDate entryDate,
-                 String password, String type, String companyName, String location) {
-        super(id, firstName, lastName, email, entryDate, password, type);
+                 String password, String type,boolean is_active,String activation_code, String companyName, String location) {
+        super(id, firstName, lastName, email, entryDate, password, type,is_active,activation_code);
         this.companyName = companyName;
         this.location = location;
     }

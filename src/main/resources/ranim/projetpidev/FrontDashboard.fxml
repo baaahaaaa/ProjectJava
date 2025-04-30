@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.control.Menu?>
+<?import javafx.scene.control.MenuBar?>
+<?import javafx.scene.control.MenuItem?>
+<?import javafx.geometry.Insets?>
+
+<BorderPane xmlns="http://javafx.com/javafx"
+            xmlns:fx="http://javafx.com/fxml"
+            fx:controller="ranim.projetpidev.controllers.FrontDashboardController"
+            stylesheets="@css/backdashboard.css">
+
+    <!-- NAVIGATION BAR -->
+    <top>
+        <HBox spacing="20" styleClass="navbar" alignment="CENTER_LEFT">
+            <padding>
+                <Insets top="10" right="20" bottom="10" left="20"/>
+            </padding>
+
+            <Label text="SKY-LEARN" styleClass="logo"/>
+
+            <Button text="Home" styleClass="nav-btn" onAction="#goHome"/>
+            <Button text="About" styleClass="nav-btn" onAction="#goAbout"/>
+            <Button text="Courses" styleClass="nav-btn" onAction="#goCourses"/>
+            <Button text="Trainers" styleClass="nav-btn" onAction="#goTrainers"/>
+            <Button text="Events" styleClass="nav-btn" onAction="#goEvents"/>
+            <Button text="Pricing" styleClass="nav-btn" onAction="#goPricing"/>
+            <Button text="Quiz" styleClass="nav-btn" onAction="#showQuiz"/> <!-- ✅ Ajout ici -->
+
+            <!-- Dropdown menu -->
+            <MenuButton text="Dropdown" styleClass="nav-btn">
+                <MenuItem text="Option 1"/>
+                <MenuItem text="Option 2"/>
+            </MenuButton>
+
+            <Button text="Contact" styleClass="nav-btn" onAction="#goContact"/>
+
+            <Region fx:id="spacer" HBox.hgrow="ALWAYS"/>
+            <Button text="Login" styleClass="get-started-btn" onAction="#gotTologin"/>
+        </HBox>
+    </top>
+
+    <!-- CONTENU PRINCIPAL -->
+    <center>
+        <StackPane fx:id="contentPane" style="-fx-background-color: #f5f5f5;"/>
+    </center>
+</BorderPane>

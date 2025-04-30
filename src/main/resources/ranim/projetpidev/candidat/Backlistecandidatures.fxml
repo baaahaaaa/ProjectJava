@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.String?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+
+<AnchorPane prefHeight="534.0" prefWidth="987.0" styleClass="root-back-candidates" stylesheets="@backlistecandidatures.css" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ranim.projetpidev.controllers.candidat.BacklistecandidaturesController">
+
+    <!-- En‑tête avec titre et bouton Back -->
+    <HBox alignment="CENTER_RIGHT" layoutX="20" layoutY="20" prefWidth="760" spacing="10" />
+
+    <!-- Carte blanche englobante -->
+    <VBox layoutX="20" layoutY="60" prefHeight="474.0" prefWidth="932.0" spacing="15" styleClass="card">
+
+        <!-- TableView des candidatures -->
+        <TableView fx:id="candidatTable" prefHeight="400.0" prefWidth="737.0" styleClass="table-view">
+            <columns>
+                <TableColumn fx:id="fullNameCol" prefWidth="150" text="Full Name" />
+                <TableColumn fx:id="emailCol" prefWidth="148.0" text="Email" />
+                <TableColumn fx:id="phoneCol" prefWidth="132.79998779296875" text="Phone Number" />
+                <TableColumn fx:id="motivationCol" prefWidth="186.39996337890625" text="Motivation" />
+                <TableColumn fx:id="resultCol" prefWidth="108.800048828125" text="Result" />
+                <TableColumn fx:id="cvCol" prefWidth="105.5999755859375" text="CV" />
+                <TableColumn fx:id="actionsCol" prefWidth="96" text="Actions" />
+            </columns>
+        </TableView>
+
+        <!-- Pagination factice -->
+        <HBox alignment="CENTER" spacing="5">
+            <Button text="Previous">
+            <styleClass>
+               <String fx:value="pagination-button" />
+               <String fx:value="label-status-rejected" />
+            </styleClass></Button>
+            <Label styleClass="pagination-page" text="1" />
+            <Button text="Next">
+            <styleClass>
+               <String fx:value="pagination-button" />
+               <String fx:value="label-status-accepted" />
+            </styleClass></Button>
+        </HBox>
+    </VBox>
+     <Button fx:id="backBtn" layoutX="907.0" layoutY="23.0" onAction="#backToList" text="Back">
+      <styleClass>
+         <String fx:value="button-primary" />
+         <String fx:value="label-status-accepted" />
+      </styleClass>
+   </Button>
+     <Label layoutX="834.0" layoutY="25.0" styleClass="page-title" text="Applications" />
+     <Label layoutX="26.0" layoutY="24.0" styleClass="card-title" text="Applications List" />
+</AnchorPane>

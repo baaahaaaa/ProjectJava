@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+<?import javafx.geometry.Insets?>
+
+<VBox xmlns:fx="http://javafx.com/javafx"
+      fx:controller="ranim.projetpidev.controllers.WelcomePageController"
+      spacing="20" alignment="TOP_CENTER" prefWidth="500" stylesheets="@css/profil.css">
+
+    <Text text="Bienvenue sur votre page d'utilisateur!"
+          styleClass="welcome-text"/>
+
+    <GridPane hgap="10" vgap="15" alignment="CENTER">
+        <padding><Insets top="10" right="20" bottom="20" left="20"/></padding>
+
+        <!-- Nom -->
+        <Label text="Nom :" GridPane.rowIndex="0" GridPane.columnIndex="0"
+               styleClass="form-label"/>
+        <TextField fx:id="firstNameField" editable="false"
+                   GridPane.rowIndex="0" GridPane.columnIndex="1"/>
+
+        <!-- Prénom -->
+        <Label text="Prénom :" GridPane.rowIndex="1" GridPane.columnIndex="0"
+               styleClass="form-label"/>
+        <TextField fx:id="lastNameField" editable="false"
+                   GridPane.rowIndex="1" GridPane.columnIndex="1"/>
+
+        <!-- Email -->
+        <Label text="Email :" GridPane.rowIndex="2" GridPane.columnIndex="0"
+               styleClass="form-label"/>
+        <TextField fx:id="emailField" editable="false"
+                   GridPane.rowIndex="2" GridPane.columnIndex="1"/>
+
+        <!-- Date d'entrée -->
+        <Label text="Date d'entrée :" GridPane.rowIndex="3" GridPane.columnIndex="0"
+               styleClass="form-label"/>
+        <TextField fx:id="entryDateField" editable="false"
+                   GridPane.rowIndex="3" GridPane.columnIndex="1"/>
+
+        <!-- Mot de passe -->
+
+    </GridPane>
+
+    <!-- Boutons -->
+    <HBox spacing="20" alignment="CENTER">
+        <Button fx:id="updateButton" text="Mettre à jour" onAction="#handleUpdate"
+                styleClass="button" id="updateButton"/>
+        <Button fx:id="exportPdfButton" text="Exporter en PDF" onAction="#handleExportPDF"
+                styleClass="button" id="exportPdfButton"/>
+    </HBox>
+</VBox>

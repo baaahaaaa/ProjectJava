@@ -7,17 +7,23 @@ import javafx.scene.Parent;
 import javafx.stage.Stage;
 
 public class MainFX extends Application {
+
     @Override
     public void start(Stage stage) throws Exception {
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("/ranim/projetpidev/Accueil.fxml"));
+        // Tester la scène Backlisteinternship.fxml
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/ranim/projetpidev/ActivateAccount.fxml"));
         Parent root = loader.load();
-        Scene scene = new Scene(root);
-        stage.setTitle("Liste");
+        Scene scene = new Scene(root,400, 300);
+        stage.setWidth(1000);  // Largeur de la fenêtre
+        stage.setHeight(800);
+        stage.setTitle("Internship List");
         stage.setScene(scene);
         stage.show();
+
+
     }
 
     public static void main(String[] args) {
-        launch(args); // ✅ Obligatoire !
+        launch(args); // Lancement de l'application JavaFX
     }
 }
