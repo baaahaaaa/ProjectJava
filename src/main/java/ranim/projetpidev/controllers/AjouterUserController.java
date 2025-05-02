@@ -8,6 +8,8 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
+import javafx.scene.web.WebEngine;
+import javafx.scene.web.WebView;
 import javafx.stage.Stage;
 import ranim.projetpidev.entites.Agent;
 import ranim.projetpidev.entites.Student;
@@ -47,7 +49,7 @@ public class AjouterUserController {
 
     // Champ spécifique Tutor
     @FXML
-    private ComboBox<String> domainComboBox;  // Remplace domain par ComboBox
+    private ComboBox<String> domainComboBox;
 
     private final UserService userService = new UserService();
     private final MailService mailService = new MailService();
@@ -62,11 +64,15 @@ public class AjouterUserController {
         } else {
             System.err.println("❌ ComboBox domainComboBox non initialisé.");
         }
-    }
+        }
+
+
 
     // 👔 Agent
     @FXML
     void addAgent(ActionEvent event) throws SQLException {
+        // Vérifier la validation du reCAPTCHA
+
         Agent user = new Agent();
         user.setFirstName(firstName.getText());
         user.setLastName(lastName.getText());
@@ -108,6 +114,8 @@ public class AjouterUserController {
 
     @FXML
     void addStudent(ActionEvent event) throws SQLException {
+        // Vérifier la validation du reCAPTCHA
+
 
         Student user = new Student();
         user.setFirstName(firstName.getText());
@@ -150,6 +158,9 @@ public class AjouterUserController {
 
     @FXML
     void addTutor(ActionEvent event) throws SQLException {
+        // Vérifier la validation du reCAPTCHA
+
+
         Tutor user = new Tutor();
 
         user.setFirstName(firstName.getText());
@@ -189,6 +200,7 @@ public class AjouterUserController {
 
         // Envoyer l'email d'activation
         mailService.sendActivationEmail(user.getEmail(), activationCode);
+
 
         showAlert("✅ Succès", "Tuteur ajouté avec succès !");
         openActivationPage(user);
@@ -245,4 +257,5 @@ public class AjouterUserController {
             e.printStackTrace();
         }
     }
+
 }

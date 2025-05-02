@@ -1,12 +1,12 @@
 package ranim.projetpidev.services;
 
-import org.bouncycastle.cms.RecipientId;
 
 import javax.mail.*;
 import javax.mail.internet.*;
 import java.util.Properties;
 
-import static org.bouncycastle.cms.RecipientId.*;
+import static javax.mail.Transport.send;
+
 
 public class MailService {
 
@@ -32,15 +32,45 @@ public class MailService {
             message.setFrom(new InternetAddress(from));
             message.setRecipients(
                     Message.RecipientType.TO, InternetAddress.parse(to));
-            message.setSubject("Your Reset Code");
-            message.setText("Here is your code: " + code);
+            message.setSubject("Your Password Reset Code");
 
-            Transport.send(message);
+            // HTML message body with CSS and explanation
+            String htmlContent = "<html>" +
+                    "<head>" +
+                    "<style>" +
+                    "body { font-family: Arial, sans-serif; background-color: #f9f9f9; padding: 20px; }" +
+                    "h1 { color: #333366; }" +
+                    "p { font-size: 14px; color: #555555; }" +
+                    ".code-box { background-color: #f1f1f1; padding: 10px; margin: 10px 0; font-size: 18px; font-weight: bold; }" +
+                    ".footer { font-size: 12px; color: #888888; margin-top: 20px; }" +
+                    "</style>" +
+                    "</head>" +
+                    "<body>" +
+                    "<h1>Password Reset Request</h1>" +
+                    "<p>Hello,</p>" +
+                    "<p>You requested a password reset for your account. To proceed, please use the following code:</p>" +
+                    "<div class='code-box'>" + code + "</div>" +
+                    "<p>Simply enter this code in the password reset form on our website to reset your password.</p>" +
+                    "<p>If you did not request a password reset, please ignore this email.</p>" +
+                    "<p>If you have any questions, feel free to contact our support team.</p>" +
+                    "<div class='footer'>" +
+                    "<p>Thank you for using our service.</p>" +
+                    "<p>Best regards,<br>Your Support Team</p>" +
+                    "</div>" +
+                    "</body>" +
+                    "</html>";
+
+            // Set the HTML content to the message
+            message.setContent(htmlContent, "text/html");
+
+            // Send the message
+            send(message);
 
         } catch (MessagingException e) {
             e.printStackTrace();
         }
     }
+
     public void sendEmail(String toEmail, String subject, String body) {
         final String from = "tasnimaraar01@gmail.com"; // À remplacer
         final String password = "vkpvsgmnucyrfuve";
@@ -68,7 +98,7 @@ public class MailService {
             message.setText(body);  // Le corps de l'email
 
             // Envoyer l'email
-            Transport.send(message);
+            send(message);
             System.out.println("E-mail envoyé avec succès.");
 
         } catch (MessagingException e) {
@@ -109,7 +139,6 @@ public class MailService {
                 + "</body>"
                 + "</html>";
 
-        // Envoyer l'email
         MailService mailService = new MailService();
         mailService.sendEmailWithHtml(toEmail, subject, body);
     }
@@ -142,10 +171,8 @@ public class MailService {
 
             Multipart multipart = new MimeMultipart();
             multipart.addBodyPart(textPart);
-
             message.setContent(multipart);
-
-            Transport.send(message);
+            send(message);
             System.out.println("Email envoyé avec succès.");
         } catch (MessagingException e) {
             e.printStackTrace();

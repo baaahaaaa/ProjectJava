@@ -4,6 +4,7 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
+<?import javafx.scene.web.WebView?>
 <AnchorPane xmlns="http://javafx.com/javafx"
             xmlns:fx="http://javafx.com/fxml"
             fx:controller="ranim.projetpidev.controllers.AjouterUserController"
@@ -39,7 +40,8 @@
 
             <ComboBox fx:id="domainComboBox" promptText="Domaine de spécialité"/>
 
-            <Button text="Ajouter Tuteur" onAction="#addTutor" styleClass="submit-button"/>
+
+            <Button text="Register" onAction="#addTutor" styleClass="submit-button"/>
         </VBox>
     </HBox>
 </AnchorPane>

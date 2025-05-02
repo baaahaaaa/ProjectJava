@@ -4,7 +4,6 @@ package ranim.projetpidev.controllers;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
-import ranim.projetpidev.entites.Event;
 import ranim.projetpidev.entites.User;
 import ranim.projetpidev.services.UserService;
 

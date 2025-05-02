@@ -3,21 +3,17 @@ package ranim.projetpidev.services;
 import ranim.projetpidev.entites.*;
 import ranim.projetpidev.tools.MyDataBase;
 
-import javax.mail.MessagingException;
-import javax.mail.Multipart;
-import javax.mail.Transport;
-import javax.mail.internet.MimeMessage;
-import javax.mail.internet.MimeMultipart;
+
 import java.sql.*;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.UUID;
 
 public class UserService implements IServices<User> {
 
 User user = new User();
+
 
     @Override
     public void add(User user) throws SQLException {
@@ -353,6 +349,9 @@ User user = new User();
 
 
 }
+
+
+
 
 
 

@@ -3,6 +3,7 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
+<?import javafx.scene.web.WebView?>
 <AnchorPane xmlns="http://javafx.com/javafx"
             xmlns:fx="http://javafx.com/fxml"
             fx:controller="ranim.projetpidev.controllers.AjouterUserController"
@@ -37,7 +38,7 @@
             <PasswordField fx:id="passwordField" promptText="Mot de passe"/>
 
 
-            <Button text="Ajouter Étudiant" onAction="#addStudent" styleClass="submit-button"/>
+            <Button text="Register" onAction="#addStudent" styleClass="submit-button"/>
         </VBox>
     </HBox>
 </AnchorPane>
