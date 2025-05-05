@@ -1,0 +1,21 @@
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane xmlns="http://javafx.com/javafx" xmlns:fx="http://javafx.com/fxml"
+            fx:controller="ranim.projetpidev.controllers.QuizDetailsController"
+            prefWidth="600.0" prefHeight="300.0"
+            stylesheets="@css/Tasnim.css">
+
+    <VBox spacing="15" alignment="CENTER" AnchorPane.topAnchor="20" AnchorPane.leftAnchor="20">
+        <Label fx:id="quizTitleLabel" text="Titre :" />
+        <Label fx:id="quizTypeLabel" text="Type :" />
+        <Label fx:id="descriptionLabel" text="Description :" />
+
+        <HBox spacing="10" alignment="CENTER">
+            <Button fx:id="btnAjouterQuestion" text="Ajouter une question" onAction="#handleAddQuestion" />
+            <Button fx:id="btnVoirQuestions" text="Voir les questions" onAction="#handleShowQuestions" />
+
+        </HBox>
+        <fx:include source="FooterButtons.fxml"/>
+    </VBox>
+</AnchorPane>

@@ -1,0 +1,107 @@
+/* Couleurs principales */
+.root {
+    -primary-color: #4361ee;
+    -primary-dark: #3a56d4;
+    -error-color: #f72585;
+    -success-color: #4cc9f0;
+}
+
+/* Style du fond */
+AnchorPane {
+    -fx-background-color: #f8f9fa;
+}
+
+/* Style du titre */
+.title-label {
+    -fx-font-family: 'Segoe UI', Arial, sans-serif;
+    -fx-font-size: 24px;
+    -fx-font-weight: bold;
+    -fx-text-fill: #2b2d42;
+    -fx-padding: 0 0 15 0;
+}
+
+/* Style des labels de champ */
+.field-label {
+    -fx-font-family: 'Segoe UI', Arial, sans-serif;
+    -fx-font-size: 14px;
+    -fx-text-fill: #495057;
+    -fx-font-weight: 600;
+}
+
+/* Style des champs de texte */
+.text-field {
+    -fx-font-family: 'Segoe UI', Arial, sans-serif;
+    -fx-font-size: 14px;
+    -fx-background-color: white;
+    -fx-border-color: #ced4da;
+    -fx-border-radius: 6px;
+    -fx-border-width: 1.5px;
+    -fx-padding: 10px;
+    -fx-pref-height: 40px;
+}
+
+.text-field:focused {
+    -fx-border-color: -primary-color;
+    -fx-effect: dropshadow(three-pass-box, rgba(67, 97, 238, 0.2), 10, 0, 0, 0);
+}
+
+/* Style du date picker */
+.date-picker {
+    -fx-font-family: 'Segoe UI', Arial, sans-serif;
+    -fx-font-size: 14px;
+    -fx-background-color: white;
+    -fx-border-color: #ced4da;
+    -fx-border-radius: 6px;
+    -fx-border-width: 1.5px;
+    -fx-pref-height: 40px;
+}
+
+.date-picker .arrow-button {
+    -fx-background-color: -primary-color;
+    -fx-background-radius: 0 5px 5px 0;
+}
+
+.date-picker .arrow {
+    -fx-background-color: white;
+}
+
+/* Style de la checkbox */
+.checkbox {
+    -fx-font-family: 'Segoe UI', Arial, sans-serif;
+    -fx-text-fill: #495057;
+}
+
+.checkbox .box {
+    -fx-background-color: white;
+    -fx-border-color: #ced4da;
+    -fx-border-radius: 4px;
+}
+
+/* Style du bouton */
+.button {
+    -fx-font-family: 'Segoe UI', Arial, sans-serif;
+    -fx-font-size: 16px;
+    -fx-font-weight: bold;
+    -fx-text-fill: white;
+    -fx-background-color: -primary-color;
+    -fx-background-radius: 6px;
+    -fx-padding: 12px 24px;
+    -fx-cursor: hand;
+    -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.1), 5, 0, 0, 1);
+}
+
+.button:hover {
+    -fx-background-color: -primary-dark;
+}
+
+/* Style du label de statut */
+.status-label {
+    -fx-font-family: 'Segoe UI', Arial, sans-serif;
+    -fx-font-size: 14px;
+    -fx-text-fill: -error-color;
+    -fx-padding: 10px 0 0 0;
+}
+
+.success {
+    -fx-text-fill: -success-color !important;
+}

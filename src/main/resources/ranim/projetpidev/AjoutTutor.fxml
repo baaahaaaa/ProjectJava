@@ -28,11 +28,16 @@
             <Label text="Inscription Tuteur" styleClass="title-label"/>
 
             <TextField fx:id="firstName" promptText="Prénom"/>
+
             <TextField fx:id="lastName" promptText="Nom"/>
+
             <TextField fx:id="email" promptText="Email"/>
+
             <DatePicker fx:id="entryDate" promptText="Date d'entrée (ex: 2025-04-11)"/>
+
             <PasswordField fx:id="passwordField" promptText="Mot de passe"/>
-            <TextField fx:id="domain" promptText="Domaine de spécialité"/>
+
+            <ComboBox fx:id="domainComboBox" promptText="Domaine de spécialité"/>
 
             <Button text="Ajouter Tuteur" onAction="#addTutor" styleClass="submit-button"/>
         </VBox>

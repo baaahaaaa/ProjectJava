@@ -1,0 +1,96 @@
+/* Fond de la page */
+.root {
+    -fx-background-color: #f4f9f4;  /* Blanc cassé très léger */
+}
+
+/* Style du conteneur principal */
+.vbox {
+    -fx-padding: 40;
+    -fx-spacing: 30;
+    -fx-alignment: top-center;
+}
+
+/* Style du texte de bienvenue */
+.welcome-text {
+    -fx-font-family: 'Segoe UI', sans-serif;
+    -fx-font-size: 24px;
+    -fx-font-weight: bold;
+    -fx-text-fill: #2d6a4f;
+    -fx-padding: 0 0 20 0;
+}
+
+/* Style du GridPane */
+.grid-pane {
+    -fx-padding: 20;
+    -fx-hgap: 15;
+    -fx-vgap: 15;
+}
+
+/* Style des Labels */
+.form-label {
+    -fx-font-family: 'Segoe UI', sans-serif;
+    -fx-font-size: 14px;
+    -fx-text-fill: #2d6a4f;
+    -fx-font-weight: bold;
+    -fx-alignment: center-right;
+    -fx-pref-width: 120;
+}
+
+/* Style des TextFields */
+.text-field {
+    -fx-font-family: 'Segoe UI', sans-serif;
+    -fx-font-size: 14px;
+    -fx-background-color: #ffffff;
+    -fx-border-color: #2d6a4f;
+    -fx-border-radius: 5px;
+    -fx-padding: 8px 12px;
+    -fx-text-fill: #333333;
+    -fx-pref-width: 250px;
+}
+
+/* Style des TextField en lecture seule */
+.text-field:disabled {
+    -fx-background-color: #e8f5e9;
+    -fx-text-fill: #666666;
+    -fx-opacity: 1.0;
+}
+
+/* Style des boutons */
+.button {
+    -fx-font-family: 'Segoe UI', sans-serif;
+    -fx-font-size: 14px;
+    -fx-background-color: #2d6a4f;
+    -fx-text-fill: #ffffff;
+    -fx-padding: 10px 25px;
+    -fx-border-radius: 5px;
+    -fx-cursor: hand;
+    -fx-min-width: 150px;
+}
+
+.button:hover {
+    -fx-background-color: #3f9f79;
+}
+
+/* Style spécifique pour les boutons */
+#updateButton {
+    -fx-background-color: #6fbf73;
+}
+
+#updateButton:hover {
+    -fx-background-color: #5d9e63;
+}
+
+#exportPdfButton {
+    -fx-background-color: #4caf50;
+}
+
+#exportPdfButton:hover {
+    -fx-background-color: #43a047;
+}
+
+/* Style du conteneur des boutons */
+.hbox {
+    -fx-spacing: 20;
+    -fx-padding: 20 0 0 0;
+    -fx-alignment: center;
+}

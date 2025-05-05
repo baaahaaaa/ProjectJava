@@ -7,7 +7,7 @@
             xmlns:fx="http://javafx.com/fxml"
             fx:controller="ranim.projetpidev.controllers.AjouterUserController"
             prefHeight="500.0" prefWidth="800.0"
-            stylesheets="@css/Student.css">
+            stylesheets="@css/tutor-form.css">
 
     <HBox spacing="30" alignment="CENTER" AnchorPane.topAnchor="20" AnchorPane.leftAnchor="20" AnchorPane.rightAnchor="20">
 
@@ -27,10 +27,15 @@
             <Label text="Inscription Étudiant" styleClass="title-label"/>
 
             <TextField fx:id="firstName" promptText="Prénom"/>
+
             <TextField fx:id="lastName" promptText="Nom"/>
+
             <TextField fx:id="email" promptText="Email"/>
+
             <DatePicker fx:id="entryDate" promptText="Date d'entrée (ex: 2025-04-11)"/>
+
             <PasswordField fx:id="passwordField" promptText="Mot de passe"/>
+
 
             <Button text="Ajouter Étudiant" onAction="#addStudent" styleClass="submit-button"/>
         </VBox>

@@ -1,0 +1,130 @@
+/* Général */
+* {
+    font-family: 'Open Sans', sans-serif;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* Header */
+VBox {
+    -fx-background-color: #f8f9fa; /* Light gray background */
+    -fx-padding: 20;
+}
+
+HBox {
+    -fx-spacing: 20;
+}
+
+.header {
+    -fx-background-color: #ffffff; /* White background for header */
+    -fx-padding: 10;
+}
+
+.header Label {
+    -fx-font-size: 24px;
+    -fx-font-weight: bold;
+    -fx-text-fill: #4CAF50; /* SkyGreen color */
+}
+
+/* Navbar */
+.navbar {
+    -fx-background-color: #ffffff; /* White navbar */
+}
+
+.navbar .nav-item {
+    -fx-padding: 10px;
+    -fx-font-size: 16px;
+    -fx-text-fill: #000000; /* Black text */
+}
+
+.navbar .nav-item:hover {
+    -fx-background-color: #f8f9fa;
+}
+
+/* Button styles */
+Button {
+    -fx-background-color: #4CAF50; /* SkyGreen */
+    -fx-text-fill: white;
+    -fx-font-size: 16px;
+    -fx-padding: 10 20;
+    -fx-border-radius: 30;
+    -fx-cursor: hand;
+}
+
+Button:hover {
+    -fx-background-color: #45a049;
+}
+
+/* Footer */
+footer {
+    -fx-background-color: #f1f1f1; /* Light gray background */
+    -fx-padding: 20;
+    -fx-alignment: center;
+}
+
+footer Label {
+    -fx-font-size: 14px;
+    -fx-text-fill: #333333; /* Dark gray text */
+    -fx-margin-bottom: 10;
+}
+
+footer Button {
+    -fx-background-color: #4CAF50; /* SkyGreen */
+    -fx-text-fill: white;
+    -fx-padding: 10 20;
+    -fx-font-size: 14px;
+    -fx-border-radius: 20;
+}
+
+footer Button:hover {
+    -fx-background-color: #45a049;
+}
+
+/* Form Inputs */
+TextField {
+    -fx-background-color: #ffffff;
+    -fx-border-color: #ddd;
+    -fx-padding: 10;
+    -fx-font-size: 14px;
+    -fx-border-radius: 5;
+    -fx-pref-width: 300;
+}
+
+TextField:focused {
+    -fx-border-color: #4CAF50; /* Green border when focused */
+}
+
+TextField:disabled {
+    -fx-background-color: #f0f0f0;
+}
+
+/* Links */
+Hyperlink {
+    -fx-text-fill: #4CAF50; /* Green text */
+    -fx-font-size: 16px;
+}
+
+Hyperlink:hover {
+    -fx-text-fill: #45a049;
+}
+
+/* Miscellaneous */
+.container {
+    -fx-padding: 20;
+}
+
+.sitename {
+    -fx-font-size: 28px;
+    -fx-font-weight: bold;
+    -fx-text-fill: #4CAF50;
+}
+
+.logo {
+    -fx-padding: 10;
+}
+
+.logo ImageView {
+    -fx-fit-width: 50;
+    -fx-fit-height: 50;
+}

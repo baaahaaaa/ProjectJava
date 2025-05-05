@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane xmlns:fx="http://javafx.com/javafx"
+            fx:controller="ranim.projetpidev.controllers.UpdateCodePromoController"
+            prefWidth="400" prefHeight="300">
+    <VBox spacing="20" layoutX="10" layoutY="10">
+        <TextField fx:id="codeField" promptText="Code promo" prefWidth="200"/>
+        <TextField fx:id="discountField" promptText="Réduction (%)" prefWidth="200"/>
+        <DatePicker fx:id="expiryDateField" promptText="Date d'expiration" prefWidth="200"/>
+        <CheckBox fx:id="statusField" text="Actif" prefWidth="200"/>
+
+        <HBox spacing="10" alignment="CENTER">
+            <Button text="Sauvegarder" onAction="#savePromo" />
+            <Button text="Annuler" onAction="#closeWindow" />
+        </HBox>
+    </VBox>
+</AnchorPane>
