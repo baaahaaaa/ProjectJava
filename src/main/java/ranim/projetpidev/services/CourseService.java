@@ -1,16 +1,19 @@
 package ranim.projetpidev.services;
 
-
-import ranim.projetpidev.tools.DataSource;
 import ranim.projetpidev.entites.Course;
+import ranim.projetpidev.entites.Event;
+import ranim.projetpidev.entites.Reservation;
+import ranim.projetpidev.tools.MyDataBase;
+import java.util.List;
+import java.util.ArrayList;
 
 import java.sql.*;
-import java.util.ArrayList;
-import java.util.List;
 
-public class CourseService implements ranim.projetpidev.services.IService<Course> {
 
-    Connection connection = DataSource.getInstance().getConnection();
+
+public class CourseService implements IService<Course> {
+
+    Connection connection = MyDataBase.getInstance().getCnx();
 
     @Override
     public void ajouter(Course course) {

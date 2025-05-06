@@ -1,0 +1,140 @@
+2025-04-30 03:52:24,437 - INFO - Lancement du script avec le fichier: C:\Users\yosri\Desktop\ProjetPIDEV\ProjetPIDEV\ProjetPIDEV\ProjetPIDEV\src\main\resources\ranim\projetpidev\resources\TEI-Chap2_Estimation ponctuelle (présentation).pdf
+2025-04-30 03:52:24,437 - INFO - Initialisation du modèle BART...
+2025-04-30 03:52:26,839 - INFO - Modèle BART initialisé en 2.40 secondes
+2025-04-30 03:52:26,839 - INFO - Début du traitement du PDF: C:\Users\yosri\Desktop\ProjetPIDEV\ProjetPIDEV\ProjetPIDEV\ProjetPIDEV\src\main\resources\ranim\projetpidev\resources\TEI-Chap2_Estimation ponctuelle (présentation).pdf
+2025-04-30 03:52:26,840 - INFO - Extraction du texte du PDF: C:\Users\yosri\Desktop\ProjetPIDEV\ProjetPIDEV\ProjetPIDEV\ProjetPIDEV\src\main\resources\ranim\projetpidev\resources\TEI-Chap2_Estimation ponctuelle (présentation).pdf
+2025-04-30 03:52:27,196 - INFO - Texte extrait en 0.36 secondes
+2025-04-30 03:52:27,197 - INFO - Nombre de pages: 84
+2025-04-30 03:52:27,197 - INFO - Nombre de caractères extraits: 32441
+2025-04-30 03:52:27,203 - INFO - Début de la génération du résumé...
+2025-04-30 03:52:27,205 - INFO - Nombre de mots dans le texte: 6275
+2025-04-30 03:52:27,205 - INFO - Nombre estimé de tokens: 2781
+2025-04-30 03:52:27,205 - INFO - Paramètres de génération - max_length: 1024, min_length: 50
+2025-04-30 03:52:27,205 - INFO - Tokenization du texte...
+2025-04-30 03:52:27,642 - INFO - Tokenization terminée en 0.44 secondes
+2025-04-30 03:52:27,642 - INFO - Génération du résumé...
+2025-04-30 03:53:08,898 - INFO - Génération terminée en 41.25 secondes
+2025-04-30 03:53:08,919 - INFO - Décodage du résumé...
+2025-04-30 03:53:08,955 - INFO - Résumé généré en 41.75 secondes
+2025-04-30 03:53:08,955 - INFO - Longueur du résumé: 163 caractères
+2025-04-30 03:53:08,957 - INFO - Traitement complet terminé en 42.12 secondes
+2025-04-30 03:55:04,898 - INFO - Lancement du script avec le fichier: C:\Users\yosri\Desktop\ProjetPIDEV\ProjetPIDEV\ProjetPIDEV\ProjetPIDEV\src\main\resources\ranim\projetpidev\resources\TEI-Chap2_Estimation ponctuelle (présentation).pdf
+2025-04-30 03:55:04,898 - INFO - Initialisation du modèle BART...
+2025-04-30 03:55:06,989 - INFO - Modèle BART initialisé en 2.09 secondes
+2025-04-30 03:55:06,990 - INFO - Début du traitement du PDF: C:\Users\yosri\Desktop\ProjetPIDEV\ProjetPIDEV\ProjetPIDEV\ProjetPIDEV\src\main\resources\ranim\projetpidev\resources\TEI-Chap2_Estimation ponctuelle (présentation).pdf
+2025-04-30 03:55:06,990 - INFO - Extraction du texte du PDF: C:\Users\yosri\Desktop\ProjetPIDEV\ProjetPIDEV\ProjetPIDEV\ProjetPIDEV\src\main\resources\ranim\projetpidev\resources\TEI-Chap2_Estimation ponctuelle (présentation).pdf
+2025-04-30 03:55:07,107 - INFO - Texte extrait en 0.12 secondes
+2025-04-30 03:55:07,107 - INFO - Nombre de pages: 84
+2025-04-30 03:55:07,107 - INFO - Nombre de caractères extraits: 32441
+2025-04-30 03:55:07,109 - INFO - Début de la génération du résumé...
+2025-04-30 03:55:07,109 - INFO - Nombre de mots dans le texte: 6275
+2025-04-30 03:55:07,110 - INFO - Nombre estimé de tokens: 2781
+2025-04-30 03:55:07,110 - INFO - Paramètres de génération - max_length: 1024, min_length: 50
+2025-04-30 03:55:07,110 - INFO - Tokenization du texte...
+2025-04-30 03:55:07,187 - INFO - Tokenization terminée en 0.08 secondes
+2025-04-30 03:55:07,187 - INFO - Génération du résumé...
+2025-04-30 03:55:26,730 - INFO - Génération terminée en 19.54 secondes
+2025-04-30 03:55:26,740 - INFO - Décodage du résumé...
+2025-04-30 03:55:26,761 - INFO - Résumé généré en 19.65 secondes
+2025-04-30 03:55:26,761 - INFO - Longueur du résumé: 163 caractères
+2025-04-30 03:55:26,761 - INFO - Traitement complet terminé en 19.77 secondes
+2025-04-30 03:58:36,138 - INFO - Lancement du script avec le fichier: C:\Users\yosri\Desktop\ProjetPIDEV\ProjetPIDEV\ProjetPIDEV\ProjetPIDEV\src\main\resources\ranim\projetpidev\resources\chap-4-gestion-des-disques.pdf
+2025-04-30 03:58:36,139 - INFO - Initialisation du modèle BART...
+2025-04-30 03:58:37,829 - INFO - Modèle BART initialisé en 1.69 secondes
+2025-04-30 03:58:37,829 - INFO - Début du traitement du PDF: C:\Users\yosri\Desktop\ProjetPIDEV\ProjetPIDEV\ProjetPIDEV\ProjetPIDEV\src\main\resources\ranim\projetpidev\resources\chap-4-gestion-des-disques.pdf
+2025-04-30 03:58:37,829 - INFO - Extraction du texte du PDF: C:\Users\yosri\Desktop\ProjetPIDEV\ProjetPIDEV\ProjetPIDEV\ProjetPIDEV\src\main\resources\ranim\projetpidev\resources\chap-4-gestion-des-disques.pdf
+2025-04-30 03:58:37,941 - INFO - Texte extrait en 0.11 secondes
+2025-04-30 03:58:37,941 - INFO - Nombre de pages: 69
+2025-04-30 03:58:37,941 - INFO - Nombre de caractères extraits: 22190
+2025-04-30 03:58:37,942 - INFO - Début de la génération du résumé...
+2025-04-30 03:58:37,942 - INFO - Nombre de mots dans le texte: 3159
+2025-04-30 03:58:37,942 - INFO - Nombre estimé de tokens: 1400
+2025-04-30 03:58:37,943 - INFO - Paramètres de génération - max_length: 1024, min_length: 50
+2025-04-30 03:58:37,943 - INFO - Tokenization du texte...
+2025-04-30 03:58:37,994 - INFO - Tokenization terminée en 0.05 secondes
+2025-04-30 03:58:37,994 - INFO - Génération du résumé...
+2025-04-30 03:58:57,619 - INFO - Génération terminée en 19.62 secondes
+2025-04-30 03:58:57,623 - INFO - Décodage du résumé...
+2025-04-30 03:58:57,630 - INFO - Résumé généré en 19.69 secondes
+2025-04-30 03:58:57,631 - INFO - Longueur du résumé: 262 caractères
+2025-04-30 03:58:57,631 - INFO - Traitement complet terminé en 19.80 secondes
+2025-05-01 21:50:56,785 - INFO - Lancement du script avec le fichier: C:\Users\yosri\Desktop\ProjetPIDEV\ProjetPIDEV\ProjetPIDEV\ProjetPIDEV\ProjetPIDEV\src\main\resources\ranim\projetpidev\resources\cours3diagramme de classe.pdf
+2025-05-01 21:50:56,786 - INFO - Initialisation du modèle BART...
+2025-05-01 21:50:58,365 - INFO - Modèle BART initialisé en 1.58 secondes
+2025-05-01 21:50:58,365 - INFO - Début du traitement du PDF: C:\Users\yosri\Desktop\ProjetPIDEV\ProjetPIDEV\ProjetPIDEV\ProjetPIDEV\ProjetPIDEV\src\main\resources\ranim\projetpidev\resources\cours3diagramme de classe.pdf
+2025-05-01 21:50:58,365 - INFO - Extraction du texte du PDF: C:\Users\yosri\Desktop\ProjetPIDEV\ProjetPIDEV\ProjetPIDEV\ProjetPIDEV\ProjetPIDEV\src\main\resources\ranim\projetpidev\resources\cours3diagramme de classe.pdf
+2025-05-01 21:50:58,475 - INFO - Texte extrait en 0.11 secondes
+2025-05-01 21:50:58,475 - INFO - Nombre de pages: 32
+2025-05-01 21:50:58,475 - INFO - Nombre de caractères extraits: 11834
+2025-05-01 21:50:58,477 - INFO - Début de la génération du résumé...
+2025-05-01 21:50:58,477 - INFO - Nombre de mots dans le texte: 1684
+2025-05-01 21:50:58,477 - INFO - Nombre estimé de tokens: 746
+2025-05-01 21:50:58,477 - INFO - Paramètres de génération - max_length: 746, min_length: 50
+2025-05-01 21:50:58,477 - INFO - Tokenization du texte...
+2025-05-01 21:50:58,512 - INFO - Tokenization terminée en 0.04 secondes
+2025-05-01 21:50:58,512 - INFO - Génération du résumé...
+2025-05-01 21:51:15,007 - INFO - Génération terminée en 16.49 secondes
+2025-05-01 21:51:15,011 - INFO - Décodage du résumé...
+2025-05-01 21:51:15,018 - INFO - Résumé généré en 16.54 secondes
+2025-05-01 21:51:15,018 - INFO - Longueur du résumé: 170 caractères
+2025-05-01 21:51:15,018 - INFO - Traitement complet terminé en 16.65 secondes
+2025-05-01 21:57:47,201 - INFO - Lancement du script avec le fichier: C:\Users\yosri\Desktop\ProjetPIDEV\ProjetPIDEV\ProjetPIDEV\ProjetPIDEV\ProjetPIDEV\src\main\resources\ranim\projetpidev\resources\cours3diagramme de classe.pdf
+2025-05-01 21:57:47,202 - INFO - Initialisation du modèle BART...
+2025-05-01 21:57:49,370 - INFO - Modèle BART initialisé en 2.17 secondes
+2025-05-01 21:57:49,371 - INFO - Début du traitement du PDF: C:\Users\yosri\Desktop\ProjetPIDEV\ProjetPIDEV\ProjetPIDEV\ProjetPIDEV\ProjetPIDEV\src\main\resources\ranim\projetpidev\resources\cours3diagramme de classe.pdf
+2025-05-01 21:57:49,371 - INFO - Extraction du texte du PDF: C:\Users\yosri\Desktop\ProjetPIDEV\ProjetPIDEV\ProjetPIDEV\ProjetPIDEV\ProjetPIDEV\src\main\resources\ranim\projetpidev\resources\cours3diagramme de classe.pdf
+2025-05-01 21:57:49,482 - INFO - Texte extrait en 0.11 secondes
+2025-05-01 21:57:49,482 - INFO - Nombre de pages: 32
+2025-05-01 21:57:49,482 - INFO - Nombre de caractères extraits: 11834
+2025-05-01 21:57:49,485 - INFO - Début de la génération du résumé...
+2025-05-01 21:57:49,485 - INFO - Nombre de mots dans le texte: 1684
+2025-05-01 21:57:49,485 - INFO - Nombre estimé de tokens: 746
+2025-05-01 21:57:49,485 - INFO - Paramètres de génération - max_length: 746, min_length: 50
+2025-05-01 21:57:49,485 - INFO - Tokenization du texte...
+2025-05-01 21:57:49,519 - INFO - Tokenization terminée en 0.03 secondes
+2025-05-01 21:57:49,519 - INFO - Génération du résumé...
+2025-05-01 21:58:06,318 - INFO - Génération terminée en 16.80 secondes
+2025-05-01 21:58:06,323 - INFO - Décodage du résumé...
+2025-05-01 21:58:06,331 - INFO - Résumé généré en 16.85 secondes
+2025-05-01 21:58:06,331 - INFO - Longueur du résumé: 170 caractères
+2025-05-01 21:58:06,331 - INFO - Traitement complet terminé en 16.96 secondes
+2025-05-02 10:29:53,334 - INFO - Lancement du script avec le fichier: C:\Users\yosri\Desktop\ProjetPIDEV\ProjetPIDEV\ProjetPIDEV\ProjetPIDEV\ProjetPIDEV\src\main\resources\ranim\projetpidev\resources\TEI-Chap2_Estimation ponctuelle (présentation)_1.pdf
+2025-05-02 10:29:53,336 - INFO - Initialisation du modèle BART...
+2025-05-02 10:29:55,758 - INFO - Modèle BART initialisé en 2.42 secondes
+2025-05-02 10:29:55,758 - INFO - Début du traitement du PDF: C:\Users\yosri\Desktop\ProjetPIDEV\ProjetPIDEV\ProjetPIDEV\ProjetPIDEV\ProjetPIDEV\src\main\resources\ranim\projetpidev\resources\TEI-Chap2_Estimation ponctuelle (présentation)_1.pdf
+2025-05-02 10:29:55,758 - INFO - Extraction du texte du PDF: C:\Users\yosri\Desktop\ProjetPIDEV\ProjetPIDEV\ProjetPIDEV\ProjetPIDEV\ProjetPIDEV\src\main\resources\ranim\projetpidev\resources\TEI-Chap2_Estimation ponctuelle (présentation)_1.pdf
+2025-05-02 10:29:55,886 - INFO - Texte extrait en 0.13 secondes
+2025-05-02 10:29:55,886 - INFO - Nombre de pages: 84
+2025-05-02 10:29:55,886 - INFO - Nombre de caractères extraits: 32441
+2025-05-02 10:29:55,888 - INFO - Début de la génération du résumé...
+2025-05-02 10:29:55,889 - INFO - Nombre de mots dans le texte: 6275
+2025-05-02 10:29:55,889 - INFO - Nombre estimé de tokens: 2781
+2025-05-02 10:29:55,889 - INFO - Paramètres de génération - max_length: 1024, min_length: 50
+2025-05-02 10:29:55,889 - INFO - Tokenization du texte...
+2025-05-02 10:29:55,969 - INFO - Tokenization terminée en 0.08 secondes
+2025-05-02 10:29:55,969 - INFO - Génération du résumé...
+2025-05-02 10:30:13,578 - INFO - Génération terminée en 17.61 secondes
+2025-05-02 10:30:13,585 - INFO - Décodage du résumé...
+2025-05-02 10:30:13,596 - INFO - Résumé généré en 17.71 secondes
+2025-05-02 10:30:13,596 - INFO - Longueur du résumé: 163 caractères
+2025-05-02 10:30:13,597 - INFO - Traitement complet terminé en 17.84 secondes
+2025-05-07 20:42:29,728 - INFO - Lancement du script avec le fichier: C:\Users\yosri\Desktop\ProjetPIDEV\ProjetPIDEV\ProjetPIDEV\ProjetPIDEV\ProjetPIDEV\src\main\resources\ranim\projetpidev\resources\TEI-Chap2_Estimation ponctuelle (présentation)_1.pdf
+2025-05-07 20:42:29,729 - INFO - Initialisation du modèle BART...
+2025-05-07 20:42:31,472 - INFO - Modèle BART initialisé en 1.74 secondes
+2025-05-07 20:42:31,472 - INFO - Début du traitement du PDF: C:\Users\yosri\Desktop\ProjetPIDEV\ProjetPIDEV\ProjetPIDEV\ProjetPIDEV\ProjetPIDEV\src\main\resources\ranim\projetpidev\resources\TEI-Chap2_Estimation ponctuelle (présentation)_1.pdf
+2025-05-07 20:42:31,473 - INFO - Extraction du texte du PDF: C:\Users\yosri\Desktop\ProjetPIDEV\ProjetPIDEV\ProjetPIDEV\ProjetPIDEV\ProjetPIDEV\src\main\resources\ranim\projetpidev\resources\TEI-Chap2_Estimation ponctuelle (présentation)_1.pdf
+2025-05-07 20:42:31,671 - INFO - Texte extrait en 0.20 secondes
+2025-05-07 20:42:31,671 - INFO - Nombre de pages: 84
+2025-05-07 20:42:31,671 - INFO - Nombre de caractères extraits: 32441
+2025-05-07 20:42:31,672 - INFO - Début de la génération du résumé...
+2025-05-07 20:42:31,672 - INFO - Nombre de mots dans le texte: 6275
+2025-05-07 20:42:31,672 - INFO - Nombre estimé de tokens: 2781
+2025-05-07 20:42:31,672 - INFO - Paramètres de génération - max_length: 1024, min_length: 50
+2025-05-07 20:42:31,672 - INFO - Tokenization du texte...
+2025-05-07 20:42:31,741 - INFO - Tokenization terminée en 0.07 secondes
+2025-05-07 20:42:31,741 - INFO - Génération du résumé...
+2025-05-07 20:42:46,109 - INFO - Génération terminée en 14.37 secondes
+2025-05-07 20:42:46,113 - INFO - Décodage du résumé...
+2025-05-07 20:42:46,118 - INFO - Résumé généré en 14.45 secondes
+2025-05-07 20:42:46,118 - INFO - Longueur du résumé: 163 caractères
+2025-05-07 20:42:46,118 - INFO - Traitement complet terminé en 14.64 secondes

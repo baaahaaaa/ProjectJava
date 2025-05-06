@@ -1,10 +1,14 @@
 package ranim.projetpidev.controllers;
 
 import ranim.projetpidev.entites.Course;
+import ranim.projetpidev.utils.GeminiAPI;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import javafx.stage.Stage;
 import javafx.scene.control.Alert.AlertType;
+import javafx.collections.FXCollections;
+import javafx.application.Platform;
+import javafx.concurrent.Task;
 
 import java.sql.Date;
 import java.time.LocalDate;
@@ -15,7 +19,7 @@ public class CourseDialogController {
     @FXML
     private TextArea descriptionField;
     @FXML
-    private TextField domainField;
+    private ComboBox<String> domainComboBox;
     @FXML
     private ChoiceBox<String> typeChoiceBox;
     @FXML
@@ -26,6 +30,8 @@ public class CourseDialogController {
     private Button saveButton;
     @FXML
     private Button cancelButton;
+    @FXML
+    private Label statusLabel;
 
     private Course course;
     private Stage dialogStage;
@@ -33,31 +39,87 @@ public class CourseDialogController {
 
     @FXML
     private void initialize() {
-        typeChoiceBox.getItems().addAll("free", "paid");
-        
-        // Add input validation listeners
+        // Initialiser le ComboBox avec les options de domaines
+        domainComboBox.setItems(FXCollections.observableArrayList(
+                "IT", "Marketing", "Management", "Design", "Data science", "Deep learning", "Excel", "Soft skills"));
+
+        // Initialize ChoiceBox with type options
+        typeChoiceBox.setItems(FXCollections.observableArrayList("Paid", "Free"));
+
+        // Ajouter un écouteur sur le champ titre pour générer la description
         titleField.textProperty().addListener((observable, oldValue, newValue) -> {
-            validateInput();
+            if (newValue != null && !newValue.trim().isEmpty() && !newValue.equals(oldValue)) {
+                generateDescription(newValue);
+            }
         });
-        
+
+        // Autres écouteurs pour la validation
         descriptionField.textProperty().addListener((observable, oldValue, newValue) -> {
             validateInput();
         });
-        
-        domainField.textProperty().addListener((observable, oldValue, newValue) -> {
+
+        domainComboBox.valueProperty().addListener((observable, oldValue, newValue) -> {
             validateInput();
         });
-        
+
         typeChoiceBox.valueProperty().addListener((observable, oldValue, newValue) -> {
             validateInput();
         });
-        
+
         priceField.textProperty().addListener((observable, oldValue, newValue) -> {
             if (!newValue.matches("\\d*(\\.\\d*)?")) {
                 priceField.setText(oldValue);
             }
             validateInput();
         });
+    }
+
+    private void generateDescription(String title) {
+        if (title == null || title.trim().isEmpty()) {
+            return;
+        }
+
+        // Créer une tâche en arrière-plan pour la génération
+        Task<String> task = new Task<>() {
+            @Override
+            protected String call() throws Exception {
+                updateMessage("Génération de la description en cours...");
+                String result = GeminiAPI.generateCourseDescription(title);
+                if (result.startsWith("Erreur")) {
+                    throw new Exception(result);
+                }
+                return result;
+            }
+        };
+
+        // Gérer le résultat
+        task.setOnSucceeded(event -> {
+            String description = task.getValue();
+            Platform.runLater(() -> {
+                descriptionField.setText(description);
+                statusLabel.setText("Description générée avec succès");
+                statusLabel.setStyle("-fx-text-fill: green;");
+            });
+        });
+
+        task.setOnFailed(event -> {
+            Platform.runLater(() -> {
+                statusLabel.setText("Échec de la génération");
+                statusLabel.setStyle("-fx-text-fill: red;");
+                Alert alert = new Alert(AlertType.ERROR);
+                alert.setTitle("Erreur");
+                alert.setHeaderText("Erreur de génération");
+                alert.setContentText("Impossible de générer la description : " + task.getException().getMessage());
+                alert.showAndWait();
+            });
+        });
+
+        // Mettre à jour le label de statut
+        statusLabel.setText("Génération en cours...");
+        statusLabel.setStyle("-fx-text-fill: blue;");
+
+        // Lancer la tâche
+        new Thread(task).start();
     }
 
     public void setDialogStage(Stage dialogStage) {
@@ -69,7 +131,7 @@ public class CourseDialogController {
         if (course != null) {
             titleField.setText(course.getTitle());
             descriptionField.setText(course.getDescription());
-            domainField.setText(course.getDomain());
+            domainComboBox.setValue(course.getDomain());
             typeChoiceBox.setValue(course.getType());
             priceField.setText(String.valueOf(course.getPrice()));
             creationDatePicker.setValue(course.getCreationDate().toLocalDate());
@@ -84,7 +146,7 @@ public class CourseDialogController {
         }
         course.setTitle(titleField.getText());
         course.setDescription(descriptionField.getText());
-        course.setDomain(domainField.getText());
+        course.setDomain(domainComboBox.getValue());
         course.setType(typeChoiceBox.getValue());
         try {
             course.setPrice(Double.parseDouble(priceField.getText()));
@@ -105,14 +167,14 @@ public class CourseDialogController {
             if (course == null) {
                 course = new Course();
             }
-            
+
             course.setTitle(titleField.getText());
             course.setDescription(descriptionField.getText());
-            course.setDomain(domainField.getText());
+            course.setDomain(domainComboBox.getValue());
             course.setType(typeChoiceBox.getValue());
             course.setPrice(Double.parseDouble(priceField.getText()));
             course.setCreationDate(Date.valueOf(creationDatePicker.getValue()));
-            
+
             okClicked = true;
             dialogStage.close();
         }
@@ -134,7 +196,7 @@ public class CourseDialogController {
             errorMessage += "Description is required!\n";
         }
 
-        if (domainField.getText() == null || domainField.getText().trim().isEmpty()) {
+        if (domainComboBox.getValue() == null || domainComboBox.getValue().trim().isEmpty()) {
             errorMessage += "Domain is required!\n";
         }
 
@@ -169,7 +231,7 @@ public class CourseDialogController {
             errorMessage += "Description is required!\n";
         }
 
-        if (domainField.getText() == null || domainField.getText().trim().isEmpty()) {
+        if (domainComboBox.getValue() == null || domainComboBox.getValue().trim().isEmpty()) {
             errorMessage += "Domain is required!\n";
         }
 
@@ -193,7 +255,7 @@ public class CourseDialogController {
         if (errorMessage.isEmpty()) {
             return true;
         } else {
-            Alert alert = new Alert(Alert.AlertType.ERROR);
+            Alert alert = new Alert(AlertType.ERROR);
             alert.setTitle("Invalid Fields");
             alert.setHeaderText("Please correct invalid fields");
             alert.setContentText(errorMessage);
@@ -201,4 +263,4 @@ public class CourseDialogController {
             return false;
         }
     }
-} 
+}

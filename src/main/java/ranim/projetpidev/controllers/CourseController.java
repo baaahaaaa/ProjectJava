@@ -1,7 +1,8 @@
 package ranim.projetpidev.controllers;
-import ranim.projetpidev.entites.Course;
 
+import ranim.projetpidev.entites.Course;
 import ranim.projetpidev.services.CourseService;
+import ranim.projetpidev.controllers.CourseDialogController;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
@@ -13,12 +14,13 @@ import javafx.scene.layout.VBox;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 import javafx.util.Callback;
+import ranim.projetpidev.services.RessourceService;
 
 import java.io.IOException;
 import java.sql.Date;
-import java.util.List;
 
 public class CourseController {
+
     @FXML
     private TableView<Course> courseTable;
     @FXML
@@ -54,47 +56,32 @@ public class CourseController {
         typeColumn.setCellValueFactory(cellData -> cellData.getValue().typeProperty());
         priceColumn.setCellValueFactory(cellData -> cellData.getValue().priceProperty().asObject());
         creationDateColumn.setCellValueFactory(cellData -> cellData.getValue().creationDateProperty());
-        
+
         actionsColumn.setCellFactory(createActionsCellFactory());
     }
 
     private Callback<TableColumn<Course, Void>, TableCell<Course, Void>> createActionsCellFactory() {
-        return new Callback<TableColumn<Course, Void>, TableCell<Course, Void>>() {
+        return param -> new TableCell<>() {
+            private final Button editButton = new Button("Edit");
+            private final Button deleteButton = new Button("Delete");
+            private final Button viewButton = new Button("View Ressources");
+            private final Button addButton = new Button("Add Ressource");
+
+            {
+                editButton.setOnAction(event -> handleEditCourse(getTableView().getItems().get(getIndex())));
+                deleteButton.setOnAction(event -> handleDeleteCourse(getTableView().getItems().get(getIndex())));
+                viewButton.setOnAction(event -> handleViewRessources(getTableView().getItems().get(getIndex())));
+                addButton.setOnAction(event -> handleAddRessourceToCourse(getTableView().getItems().get(getIndex())));
+            }
+
             @Override
-            public TableCell<Course, Void> call(final TableColumn<Course, Void> param) {
-                return new TableCell<Course, Void>() {
-                    private final Button editButton = new Button("Edit");
-                    private final Button deleteButton = new Button("Delete");
-                    private final Button resourceButton = new Button("View Resources");
-
-                    {
-                        editButton.setOnAction(event -> {
-                            Course course = getTableView().getItems().get(getIndex());
-                            handleEditCourse(course);
-                        });
-
-                        deleteButton.setOnAction(event -> {
-                            Course course = getTableView().getItems().get(getIndex());
-                            handleDeleteCourse(course);
-                        });
-
-                        resourceButton.setOnAction(event -> {
-                            int courseId = getTableView().getItems().get(getIndex()).getId();
-                            System.out.println(":::::::::::course IDD   "+courseId);
-                            //push to fxml and display course with id : courseId
-                        });
-                    }
-
-                    @Override
-                    protected void updateItem(Void item, boolean empty) {
-                        super.updateItem(item, empty);
-                        if (empty) {
-                            setGraphic(null);
-                        } else {
-                            setGraphic(new HBox(5, editButton, deleteButton,resourceButton));
-                        }
-                    }
-                };
+            protected void updateItem(Void item, boolean empty) {
+                super.updateItem(item, empty);
+                if (empty) {
+                    setGraphic(null);
+                } else {
+                    setGraphic(new HBox(5, editButton, deleteButton, viewButton, addButton));
+                }
             }
         };
     }
@@ -111,9 +98,9 @@ public class CourseController {
 
     private void showCourseDialog(Course course) {
         try {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/esprit/views/CourseDialog.fxml"));
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/ranim/projetpidev/CourseDialog.fxml"));
             VBox dialogPane = loader.load();
-           ranim.projetpidev.controllers.CourseDialogController controller = loader.getController();
+            CourseDialogController controller = loader.getController();
 
             // Set up the dialog
             Stage dialogStage = new Stage();
@@ -172,4 +159,102 @@ public class CourseController {
     private void handleEditCourse(Course course) {
         showCourseDialog(course);
     }
-} 
+
+    @FXML
+    private void handleViewRessources() {
+        Course selectedCourse = courseTable.getSelectionModel().getSelectedItem();
+        if (selectedCourse == null) {
+            Alert alert = new Alert(Alert.AlertType.WARNING);
+            alert.setTitle("Aucun cours sélectionné");
+            alert.setHeaderText(null);
+            alert.setContentText("Veuillez sélectionner un cours pour voir ses ressources.");
+            alert.showAndWait();
+            return;
+        }
+
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/ranim/projetpidev/RessourceView.fxml"));
+            VBox root = loader.load();
+
+            // On passe le cours sélectionné au contrôleur des ressources
+            RessourceController controller = loader.getController();
+            controller.setCourseContext(selectedCourse); // à créer côté RessourceController
+
+            Stage stage = new Stage();
+            stage.setTitle("Ressources du cours : " + selectedCourse.getTitle());
+            stage.setScene(new Scene(root));
+            stage.initModality(Modality.WINDOW_MODAL);
+            stage.initOwner(courseTable.getScene().getWindow());
+            stage.show();
+
+        } catch (IOException e) {
+            e.printStackTrace();
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setTitle("Erreur");
+            alert.setHeaderText("Impossible d'ouvrir les ressources");
+            alert.setContentText("Une erreur est survenue lors du chargement de la vue des ressources.");
+            alert.showAndWait();
+        }
+    }
+
+    private void handleViewRessources(Course course) {
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/ranim/projetpidev/RessourceView.fxml"));
+            VBox root = loader.load();
+
+            RessourceController controller = loader.getController();
+            controller.setCourseContext(course);
+
+            Stage stage = new Stage();
+            stage.setTitle("Ressources du cours : " + course.getTitle());
+            stage.setScene(new Scene(root));
+            stage.initModality(Modality.WINDOW_MODAL);
+            stage.initOwner(courseTable.getScene().getWindow());
+
+            // Ajout d'un gestionnaire d'événements pour le bouton de fermeture
+            stage.setOnCloseRequest(event -> {
+                loadCourses(); // Rafraîchir la liste des cours
+            });
+
+            stage.show();
+
+        } catch (IOException e) {
+            e.printStackTrace();
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setTitle("Erreur");
+            alert.setHeaderText("Impossible d'ouvrir les ressources");
+            alert.setContentText("Une erreur est survenue lors du chargement de la vue des ressources.");
+            alert.showAndWait();
+        }
+    }
+
+    private void handleAddRessourceToCourse(Course course) {
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/ranim/projetpidev/RessourceDialog.fxml"));
+            VBox dialogPane = loader.load();
+
+            RessourceDialogController controller = loader.getController();
+            ObservableList<Course> list = FXCollections.observableArrayList(course);
+            controller.setCourses(list);
+
+            Stage dialogStage = new Stage();
+            controller.setDialogStage(dialogStage);
+            dialogStage.initModality(Modality.WINDOW_MODAL);
+            dialogStage.initOwner(courseTable.getScene().getWindow());
+            dialogStage.setTitle("Ajouter une ressource à : " + course.getTitle());
+            dialogStage.setScene(new Scene(dialogPane));
+            dialogStage.showAndWait();
+
+            if (controller.isOkClicked()) {
+                RessourceService ressourceService = new RessourceService();
+                ressourceService.ajouter(controller.getResource());
+            }
+
+        } catch (IOException e) {
+            e.printStackTrace();
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setContentText("Erreur lors de l'ouverture du dialogue de ressource.");
+            alert.showAndWait();
+        }
+    }
+}

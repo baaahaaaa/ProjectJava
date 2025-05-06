@@ -4,6 +4,7 @@ import com.stripe.Stripe;
 import com.stripe.model.PaymentIntent;
 import com.stripe.param.PaymentIntentCreateParams;
 import javafx.application.Platform;
+import javafx.concurrent.Worker;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
@@ -14,6 +15,8 @@ import javafx.scene.control.Label;
 import javafx.scene.control.MenuItem;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.*;
+import javafx.scene.web.WebEngine;
+import javafx.scene.web.WebView;
 import javafx.stage.Stage;
 import ranim.projetpidev.entites.Course;
 import ranim.projetpidev.entites.Panier;
@@ -33,6 +36,8 @@ import java.awt.*;
 import java.io.IOException;
 import java.util.List;
 import java.util.Optional;
+import java.util.Timer;
+import java.util.TimerTask;
 import java.util.stream.Collectors;
 import java.time.LocalDate;
 
@@ -355,180 +360,241 @@ private void handleConfirmPaiement() {
 
     @FXML
     public void validerPanier() {
-        Dialog<ButtonType> dialog = new Dialog<>();
-        dialog.setTitle("Process Payment");
-        dialog.setHeaderText("Please enter your payment details");
-
-        // Create TextFields for input
-        TextField amountField = new TextField();
-        amountField.setPromptText("Montant");
-
-        TextField cardNumberField = new TextField();
-        cardNumberField.setPromptText("Numéro de carte");
-
-        TextField expMonthField = new TextField();
-        expMonthField.setPromptText("Mois d'expiration");
-
-        TextField expYearField = new TextField();
-        expYearField.setPromptText("Année d'expiration");
-
-        TextField cvcField = new TextField();
-        cvcField.setPromptText("CVC");
-
-        // Create a GridPane to hold the fields
-        GridPane grid = new GridPane();
-        grid.add(new Label("Montant:"), 0, 0);
-        grid.add(amountField, 1, 0);
-        grid.add(new Label("Numéro de carte:"), 0, 1);
-        grid.add(cardNumberField, 1, 1);
-        grid.add(new Label("Mois d'expiration:"), 0, 2);
-        grid.add(expMonthField, 1, 2);
-        grid.add(new Label("Année d'expiration:"), 0, 3);
-        grid.add(expYearField, 1, 3);
-        grid.add(new Label("CVC:"), 0, 4);
-        grid.add(cvcField, 1, 4);
-
-        dialog.getDialogPane().setContent(grid);
-
-        // Add buttons to the dialog
-        ButtonType confirmButton = new ButtonType("Confirmer", ButtonBar.ButtonData.OK_DONE);
-        dialog.getDialogPane().getButtonTypes().addAll(confirmButton, ButtonType.CANCEL);
-
-        // Handle button clicks
-        dialog.setResultConverter(dialogButton -> {
-            if (dialogButton == confirmButton) {
-                return ButtonType.OK;
-            }
-            return null;
-        });
-
-        Optional<ButtonType> result = dialog.showAndWait();
-
-        if (result.isPresent() && result.get() == ButtonType.OK) {
-            try {
-                // Get amount and other details from dialog
-                String amountStr = amountField.getText().trim();
-                if (amountStr.isEmpty()) {
-                    showPaymentError("❌ Veuillez entrer un montant");
+        if (panier == null || panier.getCourses().isEmpty()) {
+            showError("Erreur", "Votre panier est vide");
                     return;
                 }
 
-                long amount = Math.round(Double.parseDouble(amountStr) * 100);
-                String cardNumber = cardNumberField.getText().replaceAll("\\s+", "");
-                if (cardNumber.isEmpty()) {
-                    showPaymentError("❌ Veuillez entrer un numéro de carte");
-                    return;
-                }
-                if (cardNumber.length() != 16 || !cardNumber.matches("\\d{16}")) {
-                    showPaymentError("❌ Numéro de carte invalide (doit être de 16 chiffres)");
-                    return;
-                }
-
-                // Expiry date check
-                String expiryMonthStr = expMonthField.getText().trim();
-                String expiryYearStr = expYearField.getText().trim();
-                if (expiryMonthStr.isEmpty() || expiryYearStr.isEmpty()) {
-                    showPaymentError("❌ Veuillez entrer la date d'expiration");
+        try {
+            // Calculer le montant total
+            double total = panier.getCourses().stream()
+                    .mapToDouble(Course::getPrice)
+                    .sum();
+            
+            // Convertir en euros et s'assurer que le montant est au moins 0,50€
+            double totalInEuros = total * 0.31; // Conversion approximative TND vers EUR
+            if (totalInEuros < 0.50) {
+                showError("Erreur", "Le montant minimum pour un paiement est de 0,50€ (environ 1,60 DT)");
                     return;
                 }
 
-                int expiryMonth = Integer.parseInt(expiryMonthStr);
-                int expiryYear = Integer.parseInt(expiryYearStr);
+            long amount = Math.round(totalInEuros * 100); // Convertir en centimes
 
-                int currentYear = LocalDate.now().getYear();
-                if (expiryYear < currentYear || (expiryYear == currentYear && expiryMonth < LocalDate.now().getMonthValue())) {
-                    showPaymentError("❌ Carte expirée");
-                    return;
-                }
-
-                // CVC validation
-                String cvc = cvcField.getText().trim();
-                if (cvc.isEmpty()) {
-                    showPaymentError("❌ Veuillez entrer le CVC");
-                    return;
-                }
-                if (cvc.length() != 3 && cvc.length() != 4) {
-                    showPaymentError("❌ CVC invalide");
-                    return;
-                }
-
-                // Additional validations
-                if (cardNumber.equals("4000000000009995")) {
-                    showPaymentError("❌ Fonds insuffisants");
-                    return;
-                }
-                if (cardNumber.equals("4000000000000002")) {
-                    showPaymentError("❌ Carte refusée");
-                    return;
-                }
-
-                // Call the payment processing logic
-                handleConfirmPaiement();
-
-                // Create payment intent
+            // Créer l'intention de paiement
                 PaymentIntentCreateParams params = PaymentIntentCreateParams.builder()
                         .setAmount(amount)
                         .setCurrency("eur")
                         .setAutomaticPaymentMethods(
                                 PaymentIntentCreateParams.AutomaticPaymentMethods.builder()
                                         .setEnabled(true)
+                                    .setAllowRedirects(PaymentIntentCreateParams.AutomaticPaymentMethods.AllowRedirects.NEVER)
                                         .build()
                         )
+                    .setDescription("Paiement de cours en ligne")
                         .build();
-                PaymentIntent.create(params);
 
-                // Success notification
-                showSystemTrayNotification("Paiement Confirmé montant: " + (amount / 100.0));
+            PaymentIntent paymentIntent = PaymentIntent.create(params);
 
-                // Clear fields after processing
-                amountField.clear();
-                cardNumberField.clear();
-                expMonthField.clear();
-                expYearField.clear();
-                cvcField.clear();
-            } catch (Exception e) {
-                e.printStackTrace();
-                showPaymentError("❌ Erreur inattendue");
-            }
-        }
-    }
-    private void showPaymentError(String message) {
+            // Créer la boîte de dialogue de paiement
+            Dialog<String> dialog = new Dialog<>();
+            dialog.setTitle("Paiement Sécurisé");
+            dialog.setHeaderText("Paiement pour vos cours");
+
+            // Créer la WebView pour le formulaire de paiement
+            WebView webView = new WebView();
+            webView.setPrefSize(500, 400);
+            WebEngine engine = webView.getEngine();
+
+            // HTML pour le formulaire de paiement
+            String htmlContent = String.format("""
+                <!DOCTYPE html>
+                <html>
+                <head>
+                    <meta charset="utf-8">
+                    <title>Paiement</title>
+                    <script src="https://js.stripe.com/v3/"></script>
+                    <style>
+                        body { 
+                            font-family: -apple-system, sans-serif; 
+                            padding: 20px; 
+                            background: #f8f9fa; 
+                            color: #333;
+                        }
+                        .container { 
+                            max-width: 450px; 
+                            margin: 0 auto; 
+                            background: white; 
+                            padding: 30px; 
+                            border-radius: 12px;
+                            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+                        }
+                        .amount {
+                            font-size: 24px;
+                            font-weight: bold;
+                            text-align: center;
+                            margin-bottom: 20px;
+                            color: #2d3748;
+                        }
+                        .form-row {
+                            margin-bottom: 25px;
+                        }
+                        .form-row label {
+                            display: block;
+                            margin-bottom: 8px;
+                            font-weight: 500;
+                            color: #2d3748;
+                        }
+                        #card-element {
+                            padding: 15px;
+                            border: 2px solid #e2e8f0;
+                            border-radius: 8px;
+                            background: white;
+                            transition: border-color 0.2s ease;
+                        }
+                        #card-element.invalid {
+                            border-color: #e53e3e;
+                        }
+                        button { 
+                            background: #4CAF50; 
+                            color: white; 
+                            padding: 16px;
+                            border: none; 
+                            border-radius: 8px; 
+                            width: 100%%;
+                            margin: 25px 0 15px; 
+                            font-size: 16px;
+                            font-weight: 600;
+                            cursor: pointer;
+                            transition: all 0.2s ease;
+                        }
+                        button:disabled {
+                            background: #9ca3af;
+                            cursor: not-allowed;
+                        }
+                        button:hover:not(:disabled) {
+                            background: #43a047;
+                        }
+                        .success { 
+                            color: #2f855a; 
+                            margin-top: 10px;
+                            text-align: center;
+                            font-weight: 500;
+                        }
+                        .error { 
+                            color: #e53e3e; 
+                            margin-top: 10px;
+                            font-size: 14px;
+                        }
+                    </style>
+                </head>
+                <body>
+                    <div class="container">
+                        <div class="amount">%.2f DT</div>
+                        <form id="payment-form">
+                            <div class="form-row">
+                                <label for="card-element">Informations de carte</label>
+                                <div id="card-element"></div>
+                            </div>
+                            <button type="submit" id="submit-button">Payer maintenant</button>
+                            <div id="success-message" class="success"></div>
+                        </form>
+                    </div>
+
+                    <script>
+                        const stripe = Stripe('%s');
+                        const elements = stripe.elements();
+                        const card = elements.create('card', {
+                            style: {
+                                base: {
+                                    fontSize: '16px',
+                                    fontFamily: '-apple-system, BlinkMacSystemFont, Segoe UI, Roboto, sans-serif',
+                                    color: '#2d3748',
+                                    '::placeholder': {
+                                        color: '#a0aec0'
+                                    },
+                                    padding: '12px'
+                                }
+                            }
+                        });
+                        card.mount('#card-element');
+
+                        const form = document.getElementById('payment-form');
+                        const submitButton = document.getElementById('submit-button');
+                        const successDiv = document.getElementById('success-message');
+
+                        form.addEventListener('submit', async (e) => {
+                            e.preventDefault();
+                            submitButton.disabled = true;
+                            submitButton.textContent = 'Traitement en cours...';
+
+                            const result = await stripe.confirmCardPayment('%s', {
+                                payment_method: {
+                                    card: card
+                                }
+                            });
+
+                            if (result.paymentIntent.status === 'succeeded') {
+                                successDiv.textContent = 'Paiement réussi!';
+                                window.paymentSuccessful = true;
+                            }
+                        });
+                    </script>
+                </body>
+                </html>
+            """, total, STRIPE_PUBLIC_KEY, paymentIntent.getClientSecret());
+
+            engine.loadContent(htmlContent);
+
+            final boolean[] paymentSuccessful = {false};
+            final Timer[] timer = {null};
+            engine.getLoadWorker().stateProperty().addListener((obs, oldState, newState) -> {
+                if (newState == Worker.State.SUCCEEDED) {
+                    timer[0] = new Timer(true);
+                    timer[0].scheduleAtFixedRate(new TimerTask() {
+                        @Override
+                        public void run() {
         Platform.runLater(() -> {
-            Alert alert = new Alert(Alert.AlertType.ERROR);
-            alert.setTitle("Erreur");
-            alert.setHeaderText(null);
-            alert.setContentText(message);
-            alert.setResizable(true);
-            alert.getDialogPane().setMinWidth(400);
-            alert.showAndWait();
-        });
-    }
+                                try {
+                                    Boolean success = (Boolean) engine.executeScript("window.paymentSuccessful === true");
+                                    if (Boolean.TRUE.equals(success) && !paymentSuccessful[0]) {
+                                        paymentSuccessful[0] = true;
+                                        if (timer[0] != null) {
+                                            timer[0].cancel();
+                                            timer[0] = null;
+                                        }
+                                        dialog.close();
+                                        finalizePayment();
+                                    }
+                                } catch (Exception e) {
+                                    // Ignorer les erreurs de script
+                                }
+                            });
+                        }
+                    }, 1000, 500);
+                }
+            });
 
-    public void showSystemTrayNotification(String message) {
-        if (SystemTray.isSupported()) {
-            SystemTray systemTray = SystemTray.getSystemTray();
-            TrayIcon trayIcon = new TrayIcon(Toolkit.getDefaultToolkit().getImage("icon.png"), "Application Notification");
+            dialog.setOnCloseRequest(event -> {
+                if (timer[0] != null) {
+                    timer[0].cancel();
+                    timer[0] = null;
+                }
+            });
 
-            try {
-                systemTray.add(trayIcon);
-                trayIcon.displayMessage("Notification", message, TrayIcon.MessageType.INFO);
-            } catch (AWTException e) {
+            ButtonType cancelButton = new ButtonType("Annuler", ButtonBar.ButtonData.CANCEL_CLOSE);
+            dialog.getDialogPane().getButtonTypes().add(cancelButton);
+            dialog.getDialogPane().setContent(webView);
+            dialog.getDialogPane().setPrefSize(550, 600);
+
+            dialog.showAndWait();
+
+        } catch (Exception e) {
                 e.printStackTrace();
-            }
+            showError("Erreur", "Une erreur est survenue lors du paiement: " + e.getMessage());
         }
     }
-    /*
-    private void validerPanier() {
-        if (panier == null) {
-            showError("Erreur", "Panier non initialisé");
-            return;
-        }
 
-        if (panier.getCourses().isEmpty()) {
-            showError("Erreur", "Votre panier est vide");
-            return;
-        }
-
+    private void finalizePayment() {
         try {
             // Marquer les cours comme payés dans la base de données
             panierService.validerPanier(panier.getId());
@@ -540,7 +606,7 @@ private void handleConfirmPaiement() {
             updatePanierButton();
             updateTotal();
             
-            showSuccess("Succès", "Panier validé avec succès");
+            showSuccess("Succès", "Paiement effectué avec succès");
             
             // Fermer la fenêtre du panier
             if (panierStage != null) {
@@ -549,10 +615,10 @@ private void handleConfirmPaiement() {
             }
         } catch (Exception e) {
             e.printStackTrace();
-            showError("Erreur", "Impossible de valider le panier: " + e.getMessage());
+            showError("Erreur", "Erreur lors de la finalisation du paiement: " + e.getMessage());
         }
     }
-*/
+
     private void updateTotal() {
         if (panier != null) {
             double total = panier.getCourses().stream()
