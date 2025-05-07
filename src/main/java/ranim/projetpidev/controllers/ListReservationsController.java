@@ -1,4 +1,4 @@
-    qpackage ranim.projetpidev.controllers;
+package ranim.projetpidev.controllers;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
