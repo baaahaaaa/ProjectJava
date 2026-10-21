@@ -1,61 +1,47 @@
+# EduConnect — Client desktop JavaFX
 
----
+Application cliente de la plateforme éducative EduConnect, développée dans le cadre du module PIDEV à Esprit School of Engineering (2024–2025).
 
-### ✅ `README-JavaFX.md` (Application Client Desktop)
+## Objectif
 
-```markdown
-# EduConnect - Application JavaFX Éducative
+Proposer une interface desktop permettant de travailler avec les contenus pédagogiques, les stages, les événements et les quiz. Le fonctionnement graphique et la connexion MySQL restent à vérifier sur un poste configuré.
 
-## Overview
+## Technologies
 
-Cette application JavaFX constitue la partie client desktop du projet **EduConnect**, développée dans le cadre du module PIDEV à **Esprit School of Engineering** (2024-2025).  
-Elle permet aux étudiants d'interagir avec les contenus éducatifs (cours, stages, événements), et de passer des quiz évalués dynamiquement.
+- Java 17, JavaFX 17, FXML / CSS
+- Maven Wrapper (`mvnw`, `mvnw.cmd`) et `javafx-maven-plugin`
+- JDBC et MySQL, bibliothèques JavaFX additionnelles répertoriées dans `pom.xml`
 
-## Features ##
+## Installation et lancement
 
-- 🧑‍🎓 Espace étudiant :
-  - Achat de cours
-  - Réservation de stages et d’événements
-  - Quiz à choix multiples avec notation automatique
+Sous Windows, avec le JDK 17 :
 
-- 🎮 Interfaces dynamiques et stylisées (JavaFX)
+```powershell
+git clone https://github.com/baaahaaaa/ProjectJava.git
+cd ProjectJava
+.\mvnw.cmd clean verify
+.\mvnw.cmd javafx:run
+```
 
-- 🔗 Connexion à la base de données distante
+Le lancement JavaFX exige un environnement desktop avec affichage graphique. Le `pom.xml` référence `ranim.projetpidev.HelloApplication` comme classe principale.
 
-Tech Stack ###
+## Configurer la base MySQL
 
-Frontend ####
+Consulter [DATABASE_CONFIGURATION.md](DATABASE_CONFIGURATION.md). Exemple de variables d'environnement locales :
 
-- JavaFX 17
-- FXML + CSS
-- Scene Builder
+```powershell
+$env:EDUCONNECT_DB_URL = 'jdbc:mysql://localhost:3307/testpidev'
+$env:EDUCONNECT_DB_USER = 'educonnect_user'
+$env:EDUCONNECT_DB_PASSWORD = 'REMPLACER_PAR_UN_SECRET_LOCAL'
+```
 
-Backend
+Utiliser un compte de base de développement, pas un secret réel dans le dépôt.
 
-- Java 17
-- JDBC
-- MySQL
+## Statut et limites
 
-### Other Tools
+- Le code JavaFX, la configuration Maven et le guide JDBC sont présents.
+- Le guide de configuration historique mentionne une compilation Maven validée sous Java 17.
+- Aucun test automatisé n'a été observé ; démarrage UI, connexion MySQL, contrôle d'accès et parcours complets restent à valider.
+- Le backend web Symfony associé se trouve dans [YRTBJ](https://github.com/baaahaaaa/YRTBJ).
 
-- Maven
-- Git / GitHub
-- JavaMail API (si envoi mail)
-- Apache POI (PDF/Excel)
-
-## Directory Structure ##
-
-```arduino
-📂 SkyLearn-Client/
-├── pom.xml
-├── src/
-│   ├── main/
-│   │   ├── java/com/skylearn/client/
-│   │   │   ├── controller/
-│   │   │   ├── model/
-│   │   │   ├── service/
-│   │   │   └── util/
-│   │   └── resources/
-│   │       ├── view/          # FXML files
-│   │       └── config.properties
-└── README-JavaFX.md
+**Projet académique — ne pas le présenter comme testé end-to-end avant vérification locale.**
